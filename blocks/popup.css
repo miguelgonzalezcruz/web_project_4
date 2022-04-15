@@ -11,7 +11,7 @@
   display: none;
 }
 
-popup__show {
+.popup__show {
   display: flex;
 }
 
