@@ -1,0 +1,27 @@
+.popup {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  display: none;
+}
+
+popup__show {
+  display: flex;
+}
+
+.popup__content {
+  max-width: 430px;
+  width: 100%;
+  min-height: 323px;
+  background-color: #fff;
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 34px 36px;
+}
