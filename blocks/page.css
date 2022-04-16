@@ -10,4 +10,13 @@
   max-width: 1280px;
   min-width: 320px;
   box-sizing: content-box;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+@media screen and (max-width: 600px) {
+  .page {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

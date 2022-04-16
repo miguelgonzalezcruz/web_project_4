@@ -4,6 +4,7 @@
   padding-bottom: 50px;
   padding-top: 40px;
   max-width: 880px;
+  position: relative;
 }
 
 .profile__avatar {
@@ -85,19 +86,39 @@
 
   .profile__add {
     margin-left: 0px;
+    position: relative;
   }
 }
 
 @media screen and (max-width: 600px) {
   .profile__info {
-    grid-template-columns: minmax(auto, 224px) auto;
+    grid-template-columns: minmax(auto, 196px) auto;
     grid-row-gap: 14px;
     grid-column-gap: 10px;
+    margin-bottom: 36px;
   }
 
   .profile__info-title {
     font-size: 22px;
     font-weight: 500;
     line-height: 27px;
+  }
+
+  .profile__avatar {
+    margin-bottom: 30px;
+    margin-right: 0;
+  }
+
+  .profile__info-subtitle {
+    place-self: center;
+  }
+
+  .profile__add {
+    width: 282px;
+  }
+
+  .profile__info-edit {
+    width: 18px;
+    height: 18px;
   }
 }
