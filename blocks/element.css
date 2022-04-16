@@ -32,6 +32,9 @@
   line-height: 29px;
   margin: 0;
   padding-left: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
 .element__content-icon {
