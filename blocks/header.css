@@ -1,4 +1,12 @@
 .header {
+  display: flex;
   margin-top: 45px;
   border-bottom: 1px solid #545454;
+}
+
+@media screen and (max-width: 880px) {
+  .header {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
 }
