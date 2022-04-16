@@ -1,9 +1,7 @@
-
 //Profile content
 
 const profileInfoTitle = document.querySelector(".profile__info-title");
 const profileInfoSubtitle = document.querySelector(".profile__info-subtitle");
-
 
 //Open popup
 const popupElement = document.querySelector(".popup");
@@ -11,11 +9,11 @@ const profileEditButton = document.querySelector(".profile__info-edit");
 const inputValueTitle = document.querySelector(".input__title");
 const inputValueSubtitle = document.querySelector(".input__subtitle");
 
-function openPopup () {
-    inputValueTitle.value = profileInfoTitle.textContent;
-    inputValueSubtitle.value = profileInfoSubtitle.textContent;
+function openPopup() {
+  inputValueTitle.value = profileInfoTitle.textContent;
+  inputValueSubtitle.value = profileInfoSubtitle.textContent;
 
-    popupElement.classList.add("popup__show");
+  popupElement.classList.add("popup__show");
 }
 
 profileEditButton.addEventListener("click", openPopup);
@@ -26,25 +24,27 @@ profileEditButton.addEventListener("click", openPopup);
 
 const popupCloseButton = document.querySelector(".popup__content-close");
 
-function closePopup () {
-    popupElement.classList.remove("popup__show");
+function closePopup() {
+  popupElement.classList.remove("popup__show");
 }
 
-popupCloseButton.addEventListener("click", closePopup)
+popupCloseButton.addEventListener("click", closePopup);
 
 //End Close popup
+
+//Edit Profile form
 
 const formSubmit = document.querySelector(".popup__content-form");
 
 function editProfileContent(evt) {
-    evt.prventDefault();
+  evt.preventDefault();
 
-    profileInfoTitle.textContent = inputValueTitle.value;
-    profileInfoSubtitle.textContent = inputValueSubtitle.value;
+  profileInfoTitle.textContent = inputValueTitle.value;
+  profileInfoSubtitle.textContent = inputValueSubtitle.value;
 
-    closePopup();
+  closePopup();
 }
 
 formSubmit.addEventListener("submit", editProfileContent);
 
-
+// End Edit Profile Form
