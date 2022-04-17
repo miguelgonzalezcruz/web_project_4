@@ -25,7 +25,7 @@
   grid-template-areas:
     "title button"
     "subtitle .";
-  grid-template-columns: minmax(auto, 415px) auto;
+  grid-template-columns: minmax(max-content, 415px) auto;
   grid-row-gap: 16px;
   grid-column-gap: 18px;
 }
@@ -76,7 +76,7 @@
   margin-left: 165px;
 }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 900px) {
   .profile {
     display: flex;
     flex-direction: column;
