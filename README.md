@@ -1,16 +1,20 @@
 # Project 4: Around The U.S.
 
-### Overview
+**Intro**
 
-* Figma
-* Images
+This project shows the preferred venues of explorers around the world. Any exporer can share the 6 best destionations.
 
-**Figma**
+## Project features
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+- Semantic HTML5
+- Flexbox
+- Positioning
+- Flat BEM
+- CSS transform
+- Grid Layout
+- Javascript
+- Developed for different devices
 
-**Images**
+## GitHub link
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+- https://miguelgonzalezcruz.github.io/web_project_4/
