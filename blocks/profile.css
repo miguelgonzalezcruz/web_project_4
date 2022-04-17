@@ -4,7 +4,6 @@
   padding-bottom: 50px;
   padding-top: 40px;
   max-width: 880px;
-  position: relative;
 }
 
 .profile__avatar {
@@ -25,7 +24,7 @@
   grid-template-areas:
     "title button"
     "subtitle .";
-  grid-template-columns: minmax(max-content, 415px) auto;
+  grid-template-columns: minmax(auto, 415px) auto;
   grid-row-gap: 16px;
   grid-column-gap: 18px;
 }
@@ -43,14 +42,20 @@
 }
 
 .profile__info-edit {
+  background-image: url("../images/edit-icon.svg");
   width: 24px;
   height: 24px;
   border: 1px solid #fff;
-  background-image: url("../images/edit-icon.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-color: #000;
   align-self: center;
+}
+
+.profile__info-edit:hover {
+  opacity: 0.6;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  cursor: pointer;
 }
 
 .profile__info-subtitle {
@@ -74,6 +79,12 @@
   background-repeat: no-repeat;
   background-position: center;
   margin-left: 165px;
+}
+
+.profile__add:hover {
+  opacity: 0.6;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  cursor: pointer;
 }
 
 @media screen and (max-width: 900px) {

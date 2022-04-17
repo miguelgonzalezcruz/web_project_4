@@ -48,3 +48,15 @@ function editProfileContent(evt) {
 formSubmit.addEventListener("submit", editProfileContent);
 
 // End Edit Profile Form
+
+// Heart icon
+
+const heartInactive = document.querySelector(".element__content-icon");
+
+function activeHeart() {
+  heartInactive.classList.toggle("active__heart");
+}
+
+heartInactive.addEventListener("click", activeHeart);
+
+// End Heart Icon
