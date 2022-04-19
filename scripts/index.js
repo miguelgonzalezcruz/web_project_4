@@ -6,14 +6,14 @@ const profileInfoSubtitle = document.querySelector(".profile__info-subtitle");
 //Open popup
 const popupElement = document.querySelector(".popup");
 const profileEditButton = document.querySelector(".profile__info-edit");
-const inputValueTitle = document.querySelector(".input__title");
-const inputValueSubtitle = document.querySelector(".input__subtitle");
+const inputValueTitle = document.querySelector(".popup__input_title");
+const inputValueSubtitle = document.querySelector(".popup__input_subtitle");
 
 function openPopup() {
   inputValueTitle.value = profileInfoTitle.textContent;
   inputValueSubtitle.value = profileInfoSubtitle.textContent;
 
-  popupElement.classList.add("popup__show");
+  popupElement.classList.add("popup_is-opened");
 }
 
 profileEditButton.addEventListener("click", openPopup);
@@ -25,7 +25,7 @@ profileEditButton.addEventListener("click", openPopup);
 const popupCloseButton = document.querySelector(".popup__content-close");
 
 function closePopup() {
-  popupElement.classList.remove("popup__show");
+  popupElement.classList.remove("popup_is-opened");
 }
 
 popupCloseButton.addEventListener("click", closePopup);

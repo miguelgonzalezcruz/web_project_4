@@ -1,12 +1,17 @@
 .header {
   display: flex;
   margin-top: 45px;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid rgba(84, 84, 84, 0.7);
 }
 
 @media screen and (max-width: 900px) {
   .header {
     padding-left: 25px;
     padding-right: 25px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .header {
   }
 }

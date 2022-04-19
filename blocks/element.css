@@ -36,7 +36,7 @@
   width: 21px;
   height: 21px;
   border: none;
-  background-color: #fff;
+  background-color: transparent;
   margin-right: 18px;
   background-repeat: no-repeat;
   background-position: center;
@@ -45,8 +45,4 @@
 .element__content-icon:hover {
   opacity: 0.5;
   cursor: pointer;
-}
-
-.active__heart {
-  background-image: url("../images/black-heart-icon.svg");
 }

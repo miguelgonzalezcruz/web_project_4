@@ -21,9 +21,7 @@
 
 .profile__info {
   display: grid;
-  grid-template-areas:
-    "title button"
-    "subtitle .";
+  grid-template-rows: repeat(2, 1fr);
   grid-template-columns: minmax(auto, 415px) auto;
   grid-row-gap: 16px;
   grid-column-gap: 18px;
@@ -48,7 +46,7 @@
   border: 1px solid #fff;
   background-repeat: no-repeat;
   background-position: center;
-  background-color: #000;
+  background-color: transparent;
   align-self: center;
 }
 
@@ -75,10 +73,10 @@
   border-radius: 2px;
   border: 2px solid #fff;
   background-image: url("../images/add-icon.svg");
-  background-color: #000;
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  margin-left: 165px;
+  margin-left: auto;
 }
 
 .profile__add:hover {
@@ -89,7 +87,6 @@
 
 @media screen and (max-width: 900px) {
   .profile {
-    display: flex;
     flex-direction: column;
     justify-content: space-around;
     flex-wrap: wrap;
@@ -111,7 +108,6 @@
 
   .profile__info-title {
     font-size: 22px;
-    font-weight: 500;
     line-height: 27px;
   }
 
@@ -122,6 +118,8 @@
 
   .profile__info-subtitle {
     place-self: center;
+    font-size: 14px;
+    line-height: 17px;
   }
 
   .profile__add {
