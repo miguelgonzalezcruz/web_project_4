@@ -14,18 +14,6 @@
   display: flex;
 }
 
-.popup__content {
-  max-width: 430px;
-  width: 100%;
-  background-color: #fff;
-  border-radius: 10px;
-  position: relative;
-  box-sizing: border-box;
-  color: #000;
-  display: flex;
-  flex-direction: column;
-}
-
 .popup__content-close {
   width: 40px;
   height: 40px;
@@ -45,44 +33,46 @@
   cursor: pointer;
 }
 
+.popup__content {
+  flex-direction: column;
+  position: relative;
+  box-sizing: border-box;
+  background-color: #fff;
+  max-width: 430px;
+  min-height: 330px;
+  padding-top: 34px;
+  padding-right: 36px;
+  padding-bottom: 34px;
+  padding-left: 36px;
+  border-radius: 10px;
+}
+
 .popup__content-title {
+  margin: 0;
   font-weight: 900;
   font-size: 24px;
   line-height: 29px;
-  margin-top: 34px;
-  margin-left: 36px;
-  margin-right: 64px;
-  margin-bottom: 54px;
+  color: #000;
 }
 
 .popup__content-form {
-  margin-top: 0px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  margin-top: 36px;
 }
 
 .popup__input {
-  background: transparent;
   border: none;
   border-bottom: 1px solid rgba(84, 84, 84, 0.2);
-  height: 50px;
-  box-sizing: border-box;
   width: 100%;
-  max-width: 358px;
-  font-size: 14px;
-  line-height: 17px;
+  height: 45px;
   color: #000;
   font-weight: 400;
-  margin-top: 30px;
-}
-
-.popup__input:first-of-type {
-  margin-top: 0;
+  background: transparent;
+  font-size: 14px;
+  line-height: 17px;
 }
 
 .popup__button {
-  width: 358px;
+  width: 100%;
   height: 50px;
   border-radius: 2px;
   background-color: #000;
@@ -93,7 +83,6 @@
   text-align: center;
   border: none;
   margin-top: 48px;
-  margin-bottom: 36px;
 }
 
 .popup__button:hover {
@@ -103,9 +92,6 @@
 }
 
 @media screen and (max-width: 600px) {
-  .popup__content {
-    max-width: 282px;
-  }
   .popup__content-close {
     width: 26px;
     height: 26px;
@@ -114,27 +100,27 @@
   }
 
   .popup__content {
+    max-width: 282px;
+    min-height: 322px;
     padding-top: 25px;
-    padding-left: 22px;
     padding-right: 22px;
     padding-bottom: 25px;
+    padding-left: 22px;
   }
-
   .popup__content-title {
+    font-weight: 900;
     font-size: 18px;
     line-height: 22px;
-    margin-top: 0;
-    margin-left: 0;
-    margin-right: 0;
-    margin-bottom: 76px;
+  }
+
+  .popup__content-form {
+    margin-top: 76px;
   }
 
   .popup__button {
-    width: 238px;
     height: 46px;
     font-size: 14px;
     line-height: 17px;
     margin-top: 46px;
-    margin-bottom: 0;
   }
 }
