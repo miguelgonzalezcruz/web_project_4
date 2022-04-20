@@ -57,6 +57,9 @@
 }
 
 .profile__info-subtitle {
+  display: grid;
+  grid-column: 1/3;
+  grid-row: 2;
   margin-top: 0;
   margin-bottom: 0;
   font-size: 18px;
