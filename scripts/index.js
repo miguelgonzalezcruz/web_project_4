@@ -6,10 +6,8 @@ const profileInfoSubtitle = document.querySelector(".profile__info-subtitle");
 //Open popup
 const popupElement = document.querySelector(".popup");
 const profileEditButton = document.querySelector(".profile__info-edit");
-const inputValueTitle = document.querySelector(".popup__input_content_title");
-const inputValueSubtitle = document.querySelector(
-  ".popup__input_content_subtitle"
-);
+const inputValueTitle = document.querySelector(".popup__input_content_name");
+const inputValueSubtitle = document.querySelector(".popup__input_content_role");
 
 function openPopup() {
   inputValueTitle.value = profileInfoTitle.textContent;
