@@ -39,7 +39,6 @@
   box-sizing: border-box;
   background-color: #fff;
   max-width: 430px;
-  min-height: 330px;
   padding-top: 34px;
   padding-right: 36px;
   padding-bottom: 34px;
@@ -101,14 +100,12 @@
 
   .popup__content {
     max-width: 282px;
-    min-height: 322px;
     padding-top: 25px;
     padding-right: 22px;
     padding-bottom: 25px;
     padding-left: 22px;
   }
   .popup__content-title {
-    font-weight: 900;
     font-size: 18px;
     line-height: 22px;
   }
