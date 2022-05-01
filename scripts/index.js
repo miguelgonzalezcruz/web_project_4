@@ -87,7 +87,7 @@ initialCards.forEach(function (card) {
   // query image element
   cardElement.querySelector(
     ".element__image"
-  ).imageContent = `url(${card.link})`;
+  ).style.backgroundImage = `url(${card.link})`;
   // add event listeners
   // append it to the list
   elementsList.append(cardElement);
