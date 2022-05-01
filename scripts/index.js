@@ -1,3 +1,35 @@
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg",
+  },
+  {
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg",
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg",
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg",
+  },
+  {
+    name: "Vanoise National Park",
+    link: "https://code.s3.yandex.net/web-code/vanoise.jpg",
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg",
+  },
+];
+
+const elementsList = document.querySelector(".elements");
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".element");
+
 //Profile content
 
 const profileInfoTitle = document.querySelector(".profile__info-title");
@@ -46,6 +78,20 @@ function editProfileContent(evt) {
 }
 
 formSubmit.addEventListener("submit", editProfileContent);
+
+initialCards.forEach(function (card) {
+  //clone the template
+  const cardElement = cardTemplate.cloneNode(true);
+  // query title element
+  cardElement.querySelector(".element__content-title").textContent = card.name;
+  // query image element
+  cardElement.querySelector(
+    ".element__image"
+  ).imageContent = `url(${card.link})`;
+  // add event listeners
+  // append it to the list
+  elementsList.append(cardElement);
+});
 
 // End Edit Profile Form
 
