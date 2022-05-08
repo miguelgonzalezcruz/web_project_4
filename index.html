@@ -37,112 +37,16 @@
           <button class="profile__add" type="button" aria-label="Add"></button>
         </section>
 
-        <section class="elements">
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/element-image-yosemite.png"
-              alt="yosemite"
-            />
-            <div class="element__content">
-              <h2 class="element__content-title">Yosemite Valley</h2>
-              <button
-                class="element__content-icon"
-                type="button"
-                aria-label="Like"
-              ></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/element-image-lakelouise.png"
-              alt="lake louise"
-            />
-            <div class="element__content">
-              <h2 class="element__content-title">Lake Louise</h2>
-              <button
-                class="element__content-icon"
-                type="button"
-                aria-label="Like"
-              ></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/element-image-baldmountains.png"
-              alt="bald mountains"
-            />
-            <div class="element__content">
-              <h2 class="element__content-title">Bald Mountains</h2>
-              <button
-                class="element__content-icon"
-                type="button"
-                aria-label="Like"
-              ></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/element-image-latemar.png"
-              alt="latemar"
-            />
-            <div class="element__content">
-              <h2 class="element__content-title">Latemar</h2>
-              <button
-                class="element__content-icon"
-                type="button"
-                aria-label="Like"
-              ></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/element-image-vanoisenational.png"
-              alt="vanoise national park"
-            />
-            <div class="element__content">
-              <h2 class="element__content-title">Vanoise National Park</h2>
-              <button
-                class="element__content-icon"
-                type="button"
-                aria-label="Like"
-              ></button>
-            </div>
-          </article>
-
-          <article class="element">
-            <img
-              class="element__image"
-              src="./images/element-image-lagodibraies.png"
-              alt="lago di braies"
-            />
-            <div class="element__content">
-              <h2 class="element__content-title">Lago di Braies</h2>
-              <button
-                class="element__content-icon"
-                type="button"
-                aria-label="Like"
-              ></button>
-            </div>
-          </article>
-        </section>
+        <section class="elements"></section>
       </main>
       <footer class="footer">
         <p class="footer__content">© 2021 Around The U.S.</p>
       </footer>
-
-      <div class="popup">
+      <!-- edit popup -->
+      <div class="popup edit-popup">
         <div class="popup__content">
           <button
-            class="popup__content-close"
+            class="popup__content-close edit__close-button"
             type="button"
             aria-label="Close"
           ></button>
@@ -169,7 +73,57 @@
           </form>
         </div>
       </div>
+      <!-- create popup -->
+      <div class="popup create-popup">
+        <div class="popup__content">
+          <button
+            class="popup__content-close create__close-button"
+            type="button"
+            aria-label="Close"
+          ></button>
+          <h2 class="popup__content-title">New place</h2>
+          <form class="popup__create-form" name="edit-profile">
+            <input
+              type="text"
+              name="name"
+              class="popup__input popup__input_content_name"
+              placeholder="Your Name"
+              required
+            />
+
+            <input
+              type="text"
+              name="link"
+              class="popup__input popup__input_content_link"
+              placeholder="Image URL"
+              required
+            />
+            <button type="submit" class="popup__button" aria-label="Save">
+              Save
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
+    <template id="card-template">
+      <article class="element">
+        <img class="element__image" src="" alt="" />
+        <button
+          type="button"
+          aria-label="Delete"
+          class="element__delete-icon"
+        ></button>
+        <div class="element__content">
+          <h2 class="element__content-title"></h2>
+          <button
+            class="element__content-icon"
+            type="button"
+            aria-label="Like"
+          ></button>
+        </div>
+      </article>
+    </template>
+
     <script src="./scripts/index.js"></script>
   </body>
 </html>
