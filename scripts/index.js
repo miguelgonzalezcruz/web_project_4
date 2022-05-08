@@ -25,16 +25,24 @@ const initialCards = [
   },
 ];
 
+<<<<<<< HEAD
+=======
+const elementsList = document.querySelector(".elements");
+>>>>>>> f4b1d62cb36059b7f3ad6958601e8cb3b11718e2
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".element");
 
+<<<<<<< HEAD
 // Wrappers
 const placesWrap = document.querySelector(".elements");
 const editPopupElement = document.querySelector(".edit-popup");
 const createPopupElement = document.querySelector(".create-popup");
 const formSubmit = document.querySelector(".popup__content-form");
 const formCreate = document.querySelector(".popup__create-form");
+=======
+//Profile content
+>>>>>>> f4b1d62cb36059b7f3ad6958601e8cb3b11718e2
 
 // Buttons and other DOM elements
 const profileEditButton = document.querySelector(".profile__info-edit");
@@ -72,8 +80,30 @@ function editProfileContent(evt) {
   togglePopupElement(editPopupElement);
 }
 
+<<<<<<< HEAD
 function createContent(evt) {
   evt.preventDefault();
+=======
+formSubmit.addEventListener("submit", editProfileContent);
+
+initialCards.forEach(function (card) {
+  //clone the template
+  const cardElement = cardTemplate.cloneNode(true);
+  // query title element
+  cardElement.querySelector(".element__content-title").textContent = card.name;
+  // query image element
+  cardElement.querySelector(
+    ".element__image"
+  ).style.backgroundImage = `url(${card.link})`;
+  // add event listeners
+  // append it to the list
+  elementsList.append(cardElement);
+});
+
+// End Edit Profile Form
+
+// Heart icon only works with the first card. No need to fix it for now
+>>>>>>> f4b1d62cb36059b7f3ad6958601e8cb3b11718e2
 
   renderCard(
     {
