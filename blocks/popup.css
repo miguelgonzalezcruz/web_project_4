@@ -63,11 +63,11 @@
   background: transparent;
   max-width: 75vw;
   max-height: 75vw;
-  max-width: 540px;
 }
 
 .popup__preview_image {
   object-fit: contain;
+  max-width: 540px;
 }
 
 .popup__preview_caption {
