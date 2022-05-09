@@ -158,9 +158,9 @@
     margin-top: 46px;
   }
 
-  .preview__close-button {
-    top: -5px;
-    right: -5px;
+  .popup__content-close_preview {
+    top: -10px;
+    right: -10px;
     width: 30px;
     height: 30px;
   }
