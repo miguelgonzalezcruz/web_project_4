@@ -65,12 +65,12 @@
   max-height: 75vw;
 }
 
-.popup__preview_image {
+.popup__preview-image {
   object-fit: contain;
   max-width: 540px;
 }
 
-.popup__preview_caption {
+.popup__preview-caption {
   font-size: 12px;
   line-height: 15px;
   font-weight: 400;

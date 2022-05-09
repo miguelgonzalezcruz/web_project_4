@@ -43,14 +43,16 @@ const profileAddButton = document.querySelector(".profile__add");
 const editPopupCloseButton = document.querySelector(
   ".popup__content-close_edit"
 );
-const createPopupCloseButton = document.querySelector(".create__close-button");
+const createPopupCloseButton = document.querySelector(
+  ".popup__content-close_create"
+);
 const previewPopupCloseButton = document.querySelector(
-  ".preview__close-button"
+  ".popup__content-close_preview"
 );
 const profileInfoTitle = document.querySelector(".profile__info-title");
 const profileInfoSubtitle = document.querySelector(".profile__info-subtitle");
-const previewImageElement = document.querySelector(".popup__preview_image");
-const previewImageCaption = document.querySelector(".popup__preview_caption");
+const previewImageElement = document.querySelector(".popup__preview-image");
+const previewImageCaption = document.querySelector(".popup__preview-caption");
 
 // Form data
 const inputValueTitle = formSubmit.querySelector(".popup__input_content_name");
