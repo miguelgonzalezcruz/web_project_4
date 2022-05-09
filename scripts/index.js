@@ -43,15 +43,6 @@ const previewImagePopup = document.querySelector(".preview-popup");
 // Buttons and other DOM elements
 const profileEditButton = document.querySelector(".profile__info-edit");
 const profileAddButton = document.querySelector(".profile__add");
-const editPopupCloseButton = document.querySelector(
-  ".popup__content-close_edit"
-);
-const createPopupCloseButton = document.querySelector(
-  ".popup__content-close_create"
-);
-const previewPopupCloseButton = document.querySelector(
-  ".popup__content-close_preview"
-);
 const profileInfoTitle = document.querySelector(".profile__info-title");
 const profileInfoSubtitle = document.querySelector(".profile__info-subtitle");
 const previewImageElement = document.querySelector(".popup__preview-image");
@@ -113,16 +104,13 @@ profileAddButton.addEventListener("click", () => {
   togglePopupElement(createPopupElement);
 });
 
-editPopupCloseButton.addEventListener("click", () => {
-  togglePopupElement(editPopupElement);
-});
+const closeButtons = document.querySelectorAll(".popup__content-close");
 
-createPopupCloseButton.addEventListener("click", () => {
-  togglePopupElement(createPopupElement);
-});
-
-previewPopupCloseButton.addEventListener("click", () => {
-  togglePopupElement(previewImagePopup);
+closeButtons.forEach((button) => {
+  // find the closest popup
+  const popup = button.closest(".popup");
+  // set the listener
+  button.addEventListener("click", () => togglePopupElement(popup));
 });
 
 const getCardElement = (data) => {

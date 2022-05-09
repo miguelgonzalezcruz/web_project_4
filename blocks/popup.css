@@ -40,7 +40,7 @@
   cursor: pointer;
 }
 
-.preview__close-button {
+.popup__content-close_preview {
   top: -5px;
   right: -5px;
 }
