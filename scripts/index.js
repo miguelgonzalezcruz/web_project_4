@@ -40,7 +40,9 @@ const previewImagePopup = document.querySelector(".js-preview-popup");
 // Buttons and other DOM elements
 const profileEditButton = document.querySelector(".profile__info-edit");
 const profileAddButton = document.querySelector(".profile__add");
-const editPopupCloseButton = document.querySelector(".edit__close-button");
+const editPopupCloseButton = document.querySelector(
+  ".popup__content-close_edit"
+);
 const createPopupCloseButton = document.querySelector(".create__close-button");
 const previewPopupCloseButton = document.querySelector(
   ".preview__close-button"
