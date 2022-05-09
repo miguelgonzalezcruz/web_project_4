@@ -31,11 +31,14 @@ const cardTemplate = document
 
 // Wrappers
 const placesWrap = document.querySelector(".elements");
-const editPopupElement = document.querySelector(".edit-popup");
+
+const formEditProfile = document.querySelector(".popup__content-form");
+const formCreateElement = document.querySelector(".popup__create-form");
+
+// Popup actions
 const createPopupElement = document.querySelector(".create-popup");
-const formSubmit = document.querySelector(".popup__content-form");
-const formCreate = document.querySelector(".popup__create-form");
-const previewImagePopup = document.querySelector(".js-preview-popup");
+const editPopupElement = document.querySelector(".edit-popup");
+const previewImagePopup = document.querySelector(".preview-popup");
 
 // Buttons and other DOM elements
 const profileEditButton = document.querySelector(".profile__info-edit");
@@ -55,21 +58,19 @@ const previewImageElement = document.querySelector(".popup__preview-image");
 const previewImageCaption = document.querySelector(".popup__preview-caption");
 
 // Form data
-const inputValueTitle = formSubmit.querySelector(".popup__input_content_name");
-const inputValueSubtitle = formSubmit.querySelector(
+const inputValueTitle = formEditProfile.querySelector(
+  ".popup__input_content_name"
+);
+const inputValueSubtitle = formEditProfile.querySelector(
   ".popup__input_content_role"
 );
 
-const nameValue = formCreate.querySelector(".popup__input_content_name");
-const linkValue = formCreate.querySelector(".popup__input_content_link");
+const nameValue = formCreateElement.querySelector(".popup__input_content_name");
+const linkValue = formCreateElement.querySelector(".popup__input_content_link");
 
 // Functions
 
 function togglePopupElement(modalWindow) {
-  if (!modalWindow.classList.contains("popup_is")) {
-    inputValueTitle.value = profileInfoTitle.textContent;
-    inputValueSubtitle.value = profileInfoSubtitle.textContent;
-  }
   modalWindow.classList.toggle("popup_is-opened");
 }
 
@@ -94,14 +95,17 @@ function createContent(evt) {
   );
 
   togglePopupElement(createPopupElement);
+  formCreateElement.reset();
 }
 
 // Event listerners
 
-formSubmit.addEventListener("submit", editProfileContent);
-formCreate.addEventListener("submit", createContent);
+formEditProfile.addEventListener("submit", editProfileContent);
+formCreateElement.addEventListener("submit", createContent);
 
 profileEditButton.addEventListener("click", () => {
+  inputValueTitle.value = profileInfoTitle.textContent;
+  inputValueSubtitle.value = profileInfoSubtitle.textContent;
   togglePopupElement(editPopupElement);
 });
 
@@ -127,7 +131,8 @@ const getCardElement = (data) => {
 
   const imagePreview = cardElement.querySelector(".element__image");
 
-  cardElement.querySelector(".element__image").src = data.link;
+  imagePreview.src = data.link;
+  imagePreview.alt = data.name;
   cardElement.querySelector(".element__content-title").textContent = data.name;
   cardElement
     .querySelector(".element__content-icon")
@@ -141,6 +146,7 @@ const getCardElement = (data) => {
 
   imagePreview.addEventListener("click", function () {
     previewImageElement.src = data.link;
+    previewImageElement.alt = data.name;
     previewImageCaption.textContent = data.name;
     togglePopupElement(previewImagePopup);
   });

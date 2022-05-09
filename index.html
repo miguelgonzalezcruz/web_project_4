@@ -51,7 +51,7 @@
             aria-label="Close"
           ></button>
           <h2 class="popup__content-title">Edit profile</h2>
-          <form class="popup__content-form" name="edit-profile">
+          <form class="popup__content-form" name="form-edit-profile">
             <input
               type="text"
               name="name"
@@ -82,12 +82,12 @@
             aria-label="Close"
           ></button>
           <h2 class="popup__content-title">New place</h2>
-          <form class="popup__create-form" name="edit-profile">
+          <form class="popup__create-form" name="form-create-element">
             <input
               type="text"
               name="name"
               class="popup__input popup__input_content_name"
-              placeholder="Your Name"
+              placeholder="Title"
               required
             />
 
@@ -95,7 +95,7 @@
               type="text"
               name="link"
               class="popup__input popup__input_content_link"
-              placeholder="Image URL"
+              placeholder="Image link"
               required
             />
             <button type="submit" class="popup__button" aria-label="Save">
@@ -105,7 +105,7 @@
         </div>
       </div>
       <!-- preview popup -->
-      <div class="popup js-preview-popup">
+      <div class="popup preview-popup">
         <div class="popup__content popup__content_type_preview">
           <button
             class="popup__content-close popup__content-close_preview"
@@ -117,6 +117,7 @@
         </div>
       </div>
     </div>
+    <!-- card template -->
     <template id="card-template">
       <article class="element">
         <img class="element__image" src=" " alt=" " />
