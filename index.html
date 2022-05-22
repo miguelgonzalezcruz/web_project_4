@@ -51,14 +51,21 @@
             aria-label="Close"
           ></button>
           <h2 class="popup__content-title">Edit profile</h2>
-          <form class="popup__content-form" name="form-edit-profile">
+          <form
+            class="popup__form popup__content-form"
+            name="form-edit-profile"
+          >
             <input
               type="text"
               name="name"
               class="popup__input popup__input_content_name"
               placeholder="Your Name"
               required
+              id="owner-name"
+              maxlength="40"
+              minlength="2"
             />
+            <span class="popup__error" id="owner-name-error"></span>
 
             <input
               type="text"
@@ -66,7 +73,11 @@
               class="popup__input popup__input_content_role"
               placeholder="Your Title"
               required
+              maxlength="200"
+              minlength="2"
+              id="owner-description"
             />
+            <span class="popup__error" id="owner-description-error"></span>
             <button type="submit" class="popup__button" aria-label="Save">
               Save
             </button>
@@ -82,23 +93,38 @@
             aria-label="Close"
           ></button>
           <h2 class="popup__content-title">New place</h2>
-          <form class="popup__create-form" name="form-create-element">
+          <form
+            class="popup__form popup__create-form"
+            name="form-create-element"
+            novalidate
+          >
             <input
               type="text"
               name="name"
               class="popup__input popup__input_content_name"
               placeholder="Title"
               required
+              id="card-name"
+              maxlength="30"
+              minlength="1"
             />
+            <span class="popup__error" id="card-name-error"></span>
 
             <input
-              type="text"
+              type="url"
               name="link"
               class="popup__input popup__input_content_link"
               placeholder="Image link"
               required
+              id="card-link"
             />
-            <button type="submit" class="popup__button" aria-label="Save">
+            <span class="popup__error" id="card-link-error"></span>
+
+            <button
+              type="submit"
+              class="popup__button popup__button_disabled"
+              aria-label="Save"
+            >
               Save
             </button>
           </form>
@@ -136,7 +162,7 @@
         </div>
       </article>
     </template>
-
-    <script src="./scripts/index.js"></script>
+    <script defer src="./scripts/index.js"></script>
+    <script defer src="./scripts/validate.js"></script>
   </body>
 </html>

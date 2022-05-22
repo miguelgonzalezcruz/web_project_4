@@ -127,6 +127,32 @@
   cursor: pointer;
 }
 
+.popup__button_disabled {
+  opacity: 20%;
+  pointer-events: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.popup__error {
+  font-size: 12px;
+  line-height: 12px;
+  color: #ff0000;
+  opacity: 0;
+  left: 0;
+  transition: 0.3s;
+}
+
+.popup__error_visible {
+  opacity: 1;
+}
+
+.popup__input_type_error {
+  border-bottom-color: #ff0000;
+}
+
 @media screen and (max-width: 600px) {
   .popup__content-close {
     width: 26px;

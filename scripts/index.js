@@ -113,6 +113,15 @@ closeButtons.forEach((button) => {
   button.addEventListener("click", () => togglePopupElement(popup));
 });
 
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+};
+
 const getCardElement = (data) => {
   const cardElement = cardTemplate.cloneNode(true);
   const deleteButton = cardElement.querySelector(".element__delete-icon");
@@ -141,6 +150,45 @@ const getCardElement = (data) => {
 
   return cardElement;
 };
+
+// Closing popup on the overlay
+
+editPopupElement.addEventListener("mousedown", (evt) => {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__content-close")
+  ) {
+    togglePopupElement(editPopupElement);
+  }
+});
+
+createPopupElement.addEventListener("mousedown", (evt) => {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__content-close")
+  ) {
+    togglePopupElement(createPopupElement);
+  }
+});
+
+previewImagePopup.addEventListener("mousedown", (evt) => {
+  if (
+    evt.target.classList.contains("popup") ||
+    evt.target.classList.contains("popup__content-close")
+  ) {
+    togglePopupElement(previewImagePopup);
+  }
+});
+
+// Closing popup with ESC
+
+editPopupElement.addEventListener("keyup", (evt) => {
+  if (evt.key === "Escape") {
+    togglePopupElement(editPopupElement);
+  }
+});
+
+// Render
 
 const renderCard = (data, wrapper) => {
   const newCard = getCardElement(data);
