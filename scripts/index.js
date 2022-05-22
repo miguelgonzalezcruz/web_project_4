@@ -180,9 +180,9 @@ previewImagePopup.addEventListener("mousedown", (evt) => {
   }
 });
 
-// Closing popup with ESC
+// Close popup with ESC
 
-editPopupElement.addEventListener("keyup", (evt) => {
+document.addEventListener("keydown", (evt) => {
   if (evt.key === "Escape") {
     togglePopupElement(editPopupElement);
   }
