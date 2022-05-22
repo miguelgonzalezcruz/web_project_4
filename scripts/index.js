@@ -182,9 +182,25 @@ previewImagePopup.addEventListener("mousedown", (evt) => {
 
 // Close popup with ESC
 
+function closePopupElement(modalWindowOpen) {
+  modalWindowOpen.classList.remove("popup_is-opened");
+}
+
 document.addEventListener("keydown", (evt) => {
   if (evt.key === "Escape") {
-    togglePopupElement(editPopupElement);
+    closePopupElement(editPopupElement);
+  }
+});
+
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
+    closePopupElement(createPopupElement);
+  }
+});
+
+document.addEventListener("keydown", (evt) => {
+  if (evt.key === "Escape") {
+    closePopupElement(previewImagePopup);
   }
 });
 
