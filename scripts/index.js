@@ -100,7 +100,13 @@ profileEditButton.addEventListener("click", () => {
   togglePopupElement(editPopupElement);
 });
 
+const popupFormSubmitButton = document.getElementById("create-button");
+
 profileAddButton.addEventListener("click", () => {
+  disableSubmitButton(
+    popupFormSubmitButton,
+    validationConfig.inactiveButtonClass
+  );
   togglePopupElement(createPopupElement);
 });
 
@@ -112,15 +118,6 @@ closeButtons.forEach((button) => {
   // set the listener
   button.addEventListener("click", () => togglePopupElement(popup));
 });
-
-const validationConfig = {
-  formSelector: ".popup__form",
-  inputSelector: ".popup__input",
-  submitButtonSelector: ".popup__button",
-  inactiveButtonClass: "popup__button_disabled",
-  inputErrorClass: "popup__input_type_error",
-  errorClass: "popup__error_visible",
-};
 
 const getCardElement = (data) => {
   const cardElement = cardTemplate.cloneNode(true);
@@ -189,18 +186,21 @@ function closePopupElement(modalWindowOpen) {
 document.addEventListener("keydown", (evt) => {
   if (evt.key === "Escape") {
     closePopupElement(editPopupElement);
+    document.removeEventListener("keydown", closePopupElement);
   }
 });
 
 document.addEventListener("keydown", (evt) => {
   if (evt.key === "Escape") {
     closePopupElement(createPopupElement);
+    document.removeEventListener("keydown", closePopupElement);
   }
 });
 
 document.addEventListener("keydown", (evt) => {
   if (evt.key === "Escape") {
     closePopupElement(previewImagePopup);
+    document.removeEventListener("keydown", closePopupElement);
   }
 });
 
