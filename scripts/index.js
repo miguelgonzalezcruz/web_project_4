@@ -179,30 +179,19 @@ previewImagePopup.addEventListener("mousedown", (evt) => {
 
 // Close popup with ESC
 
-function closePopupElement(modalWindowOpen) {
-  modalWindowOpen.classList.remove("popup_is-opened");
-}
+const ClosePopupElement = (popupWindow) => {
+  popupWindow.classList.remove("popup_is-opened");
+};
 
-document.addEventListener("keydown", (evt) => {
+const handleEsc = (evt) => {
   if (evt.key === "Escape") {
-    closePopupElement(editPopupElement);
-    document.removeEventListener("keydown", closePopupElement);
+    const popupOpened = document.querySelector(".popup_is-opened");
+    ClosePopupElement(popupOpened);
   }
-});
+};
 
-document.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    closePopupElement(createPopupElement);
-    document.removeEventListener("keydown", closePopupElement);
-  }
-});
-
-document.addEventListener("keydown", (evt) => {
-  if (evt.key === "Escape") {
-    closePopupElement(previewImagePopup);
-    document.removeEventListener("keydown", closePopupElement);
-  }
-});
+document.addEventListener("keydown", handleEsc);
+document.removeEventListener("keydown", handleEsc);
 
 // Render
 
