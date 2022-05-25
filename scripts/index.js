@@ -179,19 +179,6 @@ previewImagePopup.addEventListener("mousedown", (evt) => {
 
 // Close popup with ESC
 
-const ClosePopupElement = (popupWindow) => {
-  popupWindow.classList.remove("popup_is-opened");
-};
-
-const handleEsc = (evt) => {
-  if (evt.key === "Escape") {
-    const popupOpened = document.querySelector(".popup_is-opened");
-    ClosePopupElement(popupOpened);
-  }
-};
-
-document.addEventListener("keydown", handleEsc);
-
 const OpenPopupElement = (popupWindow) => {
   popupWindow.classList.add("popup_is-opened");
 };
@@ -204,6 +191,19 @@ const handleEscOpen = (evt) => {
 };
 
 document.removeEventListener("keydown", handleEscOpen);
+
+const ClosePopupElement = (popupWindow) => {
+  popupWindow.classList.remove("popup_is-opened");
+};
+
+const handleEsc = (evt) => {
+  if (evt.key === "Escape") {
+    const popupOpened = document.querySelector(".popup_is-opened");
+    ClosePopupElement(popupOpened);
+  }
+};
+
+document.addEventListener("keydown", handleEsc);
 
 // Render
 
