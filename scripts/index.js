@@ -61,8 +61,21 @@ const linkValue = formCreateElement.querySelector(".popup__input_content_link");
 
 // Functions
 
-function togglePopupElement(modalWindow) {
-  modalWindow.classList.toggle("popup_is-opened");
+function pressEsc(e) {
+  if (e.key === "Escape") {
+    const popupOpened = document.querySelector(".popup_is-opened");
+    closePopupWindow(popupOpened);
+  }
+}
+
+function openPopupWindow(modalWindow) {
+  modalWindow.classList.add("popup_is-opened");
+  document.addEventListener("keydown", pressEsc);
+}
+
+function closePopupWindow(modalWindow) {
+  modalWindow.classList.remove("popup_is-opened");
+  document.removeEventListener("keydown", pressEsc);
 }
 
 function editProfileContent(evt) {
@@ -71,12 +84,11 @@ function editProfileContent(evt) {
   profileInfoTitle.textContent = inputValueTitle.value;
   profileInfoSubtitle.textContent = inputValueSubtitle.value;
 
-  togglePopupElement(editPopupElement);
+  closePopupWindow(editPopupElement);
 }
 
 function createContent(evt) {
   evt.preventDefault();
-
   renderCard(
     {
       name: nameValue.value,
@@ -85,7 +97,7 @@ function createContent(evt) {
     placesWrap
   );
 
-  togglePopupElement(createPopupElement);
+  closePopupWindow(createPopupElement);
   formCreateElement.reset();
 }
 
@@ -97,7 +109,7 @@ formCreateElement.addEventListener("submit", createContent);
 profileEditButton.addEventListener("click", () => {
   inputValueTitle.value = profileInfoTitle.textContent;
   inputValueSubtitle.value = profileInfoSubtitle.textContent;
-  togglePopupElement(editPopupElement);
+  openPopupWindow(editPopupElement);
 });
 
 const popupFormSubmitButton = document.getElementById("create-button");
@@ -107,7 +119,8 @@ profileAddButton.addEventListener("click", () => {
     popupFormSubmitButton,
     validationConfig.inactiveButtonClass
   );
-  togglePopupElement(createPopupElement);
+
+  openPopupWindow(createPopupElement);
 });
 
 const closeButtons = document.querySelectorAll(".popup__content-close");
@@ -116,7 +129,7 @@ closeButtons.forEach((button) => {
   // find the closest popup
   const popup = button.closest(".popup");
   // set the listener
-  button.addEventListener("click", () => togglePopupElement(popup));
+  button.addEventListener("click", () => closePopupWindow(popup));
 });
 
 const getCardElement = (data) => {
@@ -142,7 +155,7 @@ const getCardElement = (data) => {
     previewImageElement.src = data.link;
     previewImageElement.alt = data.name;
     previewImageCaption.textContent = data.name;
-    togglePopupElement(previewImagePopup);
+    openPopupWindow(previewImagePopup);
   });
 
   return cardElement;
@@ -155,7 +168,7 @@ editPopupElement.addEventListener("mousedown", (evt) => {
     evt.target.classList.contains("popup") ||
     evt.target.classList.contains("popup__content-close")
   ) {
-    togglePopupElement(editPopupElement);
+    closePopupWindow(editPopupElement);
   }
 });
 
@@ -164,7 +177,7 @@ createPopupElement.addEventListener("mousedown", (evt) => {
     evt.target.classList.contains("popup") ||
     evt.target.classList.contains("popup__content-close")
   ) {
-    togglePopupElement(createPopupElement);
+    closePopupWindow(createPopupElement);
   }
 });
 
@@ -173,37 +186,9 @@ previewImagePopup.addEventListener("mousedown", (evt) => {
     evt.target.classList.contains("popup") ||
     evt.target.classList.contains("popup__content-close")
   ) {
-    togglePopupElement(previewImagePopup);
+    closePopupWindow(previewImagePopup);
   }
 });
-
-// Close popup with ESC
-
-const OpenPopupElement = (popupWindow) => {
-  popupWindow.classList.add("popup_is-opened");
-};
-
-const handleEscOpen = (evt) => {
-  if (evt.key === "Escape") {
-    const popupOpened = document.querySelector(".popup_is-opened");
-    OpenPopupElement(popupOpened);
-  }
-};
-
-document.removeEventListener("keydown", handleEscOpen);
-
-const ClosePopupElement = (popupWindow) => {
-  popupWindow.classList.remove("popup_is-opened");
-};
-
-const handleEsc = (evt) => {
-  if (evt.key === "Escape") {
-    const popupOpened = document.querySelector(".popup_is-opened");
-    ClosePopupElement(popupOpened);
-  }
-};
-
-document.addEventListener("keydown", handleEsc);
 
 // Render
 
