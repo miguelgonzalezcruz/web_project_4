@@ -191,7 +191,19 @@ const handleEsc = (evt) => {
 };
 
 document.addEventListener("keydown", handleEsc);
-document.removeEventListener("keydown", handleEsc);
+
+const OpenPopupElement = (popupWindow) => {
+  popupWindow.classList.add("popup_is-opened");
+};
+
+const handleEscOpen = (evt) => {
+  if (evt.key === "Escape") {
+    const popupOpened = document.querySelector(".popup_is-opened");
+    OpenPopupElement(popupOpened);
+  }
+};
+
+document.removeEventListener("keydown", handleEscOpen);
 
 // Render
 
