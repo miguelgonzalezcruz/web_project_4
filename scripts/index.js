@@ -155,15 +155,6 @@ profileAddButton.addEventListener("click", () => {
   openPopupWindow(createPopupElement);
 });
 
-//--------------------------- All Close buttons ------------------------
-
-const closeButtons = document.querySelectorAll(".popup__content-close");
-
-closeButtons.forEach((button) => {
-  const popup = button.closest(".popup");
-  button.addEventListener("click", () => closePopupWindow(popup));
-});
-
 //--------------------------- Render ------------------------
 
 const renderCard = (data, wrapper) => {

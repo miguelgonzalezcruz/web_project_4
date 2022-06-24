@@ -15,15 +15,11 @@ class Card {
   // Event Listeners
 
   _setEventListeners() {
-    this._element
-      .querySelector(".element__content-icon")
-      .addEventListener("click", () => this._handleLike());
-    this._element
-      .querySelector(".element__delete-icon")
-      .addEventListener("click", () => this._handleDelete());
-    this._element
-      .querySelector(".element__image")
-      .addEventListener("click", () => this._handleImagePreview());
+    this._likeButton.addEventListener("click", () => this._handleLike());
+    this._deleteButton.addEventListener("click", () => this._handleDelete());
+    this._previewImage.addEventListener("click", () =>
+      this._handleImagePreview()
+    );
   }
 
   // ---------------- Card activity -----------------------------
@@ -32,9 +28,7 @@ class Card {
   }
 
   _handleLike() {
-    this._element
-      .querySelector(".element__content-icon")
-      .classList.toggle("active__heart");
+    this._likeButton.classList.toggle("active__heart");
   }
 
   _handleImagePreview() {
@@ -61,6 +55,10 @@ class Card {
     this._element.querySelector(".element__image").alt = this._name;
     this._element.querySelector(".element__content-title").textContent =
       this._name;
+    this._likeButton = this._element.querySelector(".element__content-icon");
+    this._deleteButton = this._element.querySelector(".element__delete-icon");
+    this._previewImage = this._element.querySelector(".element__image");
+
     this._setEventListeners();
     return this._element;
   }
