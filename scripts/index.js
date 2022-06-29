@@ -103,31 +103,17 @@ formCreateElement.addEventListener("submit", createContent);
 
 //--------------------------- Closing popup on the overlay ------------------------
 
-editPopupElement.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup__content-close")
-  ) {
-    closePopupWindow(editPopupElement);
-  }
-});
+const popups = document.querySelectorAll(".popup");
 
-createPopupElement.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup__content-close")
-  ) {
-    closePopupWindow(createPopupElement);
-  }
-});
-
-previewImagePopup.addEventListener("mousedown", (evt) => {
-  if (
-    evt.target.classList.contains("popup") ||
-    evt.target.classList.contains("popup__content-close")
-  ) {
-    closePopupWindow(previewImagePopup);
-  }
+popups.forEach((popup) => {
+  popup.addEventListener("mousedown", (evt) => {
+    if (evt.target.classList.contains("popup_is-opened")) {
+      closePopupWindow(popup);
+    }
+    if (evt.target.classList.contains("popup__content-close")) {
+      closePopupWindow(popup);
+    }
+  });
 });
 
 //--------------------------- Refactoring ------------------------
@@ -157,10 +143,18 @@ profileAddButton.addEventListener("click", () => {
 
 //--------------------------- Render ------------------------
 
+const cardSelector = "#card-template";
+
 const renderCard = (data, wrapper) => {
-  const card = new Card(data, "#card-template").getCardElement();
-  wrapper.prepend(card);
+  const card = new Card(data, cardSelector);
+  wrapper.prepend(card.getCardElement());
 };
+
+//------------ Old Code -------------
+// const renderCard = (data, wrapper) => {
+//   const card = new Card(data, "#card-template").getCardElement();
+//   wrapper.prepend(card);
+// };
 
 initialCards.forEach((data) => {
   renderCard(data, placesWrap);

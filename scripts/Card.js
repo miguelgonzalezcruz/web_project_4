@@ -51,13 +51,13 @@ class Card {
 
   getCardElement() {
     this._element = this._cardTemplate();
-    this._element.querySelector(".element__image").src = this._link;
-    this._element.querySelector(".element__image").alt = this._name;
+    this._previewImage = this._element.querySelector(".element__image");
+    this._previewImage.src = this._link;
+    this._previewImage.alt = this._name;
     this._element.querySelector(".element__content-title").textContent =
       this._name;
     this._likeButton = this._element.querySelector(".element__content-icon");
     this._deleteButton = this._element.querySelector(".element__delete-icon");
-    this._previewImage = this._element.querySelector(".element__image");
 
     this._setEventListeners();
     return this._element;
