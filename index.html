@@ -22,6 +22,7 @@
       <header class="header">
         <img class="logo" src="./images/around-logo.svg" alt="logo" />
       </header>
+
       <main>
         <section class="profile">
           <div class="profile__avatar"></div>
@@ -43,10 +44,10 @@
         <p class="footer__content">© 2021 Around The U.S.</p>
       </footer>
       <!-- edit popup -->
-      <div class="popup edit-popup">
+      <div class="popup edit-popup" id="edit-popup">
         <div class="popup__content">
           <button
-            class="popup__content-close"
+            class="popup__close"
             type="button"
             aria-label="Close"
           ></button>
@@ -85,10 +86,10 @@
         </div>
       </div>
       <!-- create popup -->
-      <div class="popup create-popup">
+      <div class="popup create-popup" id="create-popup">
         <div class="popup__content">
           <button
-            class="popup__content-close"
+            class="popup__close"
             type="button"
             aria-label="Close"
           ></button>
@@ -132,10 +133,10 @@
         </div>
       </div>
       <!-- preview popup -->
-      <div class="popup preview-popup">
+      <div class="popup preview-popup" id="preview-popup">
         <div class="popup__content popup__content_type_preview">
           <button
-            class="popup__content-close popup__content-close_preview"
+            class="popup__close popup__close_preview"
             type="button"
             aria-label="Close"
           ></button>
@@ -163,7 +164,7 @@
         </div>
       </article>
     </template>
-    <script type="module" src="./scripts/index.js">
+    <script type="module" src="./pages/index.js">
       defer
     </script>
   </body>
