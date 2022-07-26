@@ -3,12 +3,26 @@ import Popup from "./Popup.js";
 class PopupWithForm extends Popup {
   constructor(popupSelector, handleFormSubmit) {
     super(popupSelector);
-    this._form = this._popup.querySelector(".popup__form");
+
     this._handleFormSubmit = handleFormSubmit;
+    this._form = this._popup.querySelector(".popup__form");
     this._inputList = this._form.querySelectorAll(".popup__input");
     this._submitButton = this._form.querySelector(".popup__button");
     this._submitButtonText = this._submitButton.value;
   }
+
+  // _getInputValues() {
+  //   const newinputs = this._form.querySelectorAll("input");
+
+  //   const inputData = {};
+  //   newinputs.forEach((input) => {
+  //     inputData[input.name] = input.value;
+  //   });
+
+  //   return inputData;
+  // }
+
+  // Este es el antiguo que funciona NO BORRAR
 
   _getInputValues() {
     this._data = {};
@@ -17,6 +31,8 @@ class PopupWithForm extends Popup {
     });
     return this._data;
   }
+
+  /// Hasta aquí ---
 
   setEventListeners() {
     super.setEventListeners();

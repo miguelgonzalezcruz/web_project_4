@@ -1,7 +1,12 @@
 import "./index.css";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
-import { initialCards, constants } from "../components/constants.js";
+import {
+  initialCards,
+  constants,
+  nameInput,
+  titleInput,
+} from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
@@ -26,8 +31,8 @@ const inputValueSubtitle = formEditProfile.querySelector(
 );
 const nameValue = formCreateElement.querySelector(".popup__input_content_name");
 const linkValue = formCreateElement.querySelector(".popup__input_content_link");
-const nameInput = ".profile__info-title";
-const titleInput = ".profile__info-subtitle";
+// const nameInput = ".profile__info-title";
+// const titleInput = ".profile__info-subtitle";
 
 function renderCard(cardSection, data, cardPopup) {
   const cardObject = new Card(data, "#card-template", () => {
@@ -64,19 +69,32 @@ const editProfile = new PopupWithForm(".edit-popup", (values) => {
     userNewJobInput: values.title,
   });
   editProfile.closePopupWindow();
+  console.log(editProfile);
 });
 
 editProfile.setEventListeners();
 
-const addNewCard = new PopupWithForm("#create-popup", () => {
-  const cardContentNew = {
-    name: nameValue.value,
-    link: linkValue.value,
-  };
-  renderCard(placesGrid, cardContentNew, imagePopup);
-  addNewCard.closePopupWindow();
-  formCreateElement.reset();
+// Inicio nuevo codigo
+
+const addNewCard = new PopupWithForm({
+  popupSelector: "#create-popup",
+  handleFormSubmit: (data) => {
+    cardList.addItem(createCardElement(data));
+  },
 });
+
+// Inicio código antiguo NO EDITAR
+
+// const addNewCard = new PopupWithForm("#create-popup", () => {
+//   const cardContentNew = {
+//     name: nameValue.value,
+//     link: linkValue.value,
+//   };
+//   renderCard(placesGrid, cardContentNew, imagePopup);
+//   addNewCard.closePopupWindow();
+// });
+
+// Fin código antiguo
 
 addNewCard.setEventListeners();
 

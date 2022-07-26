@@ -13,7 +13,7 @@ class Card {
   createCardElement() {
     this._element = this._getCardElement();
 
-    this._TextAndImage();
+    this._setTextAndImage();
     this._setEventListeners();
 
     return this._element;
@@ -24,15 +24,9 @@ class Card {
   }
 
   _setEventListeners() {
-    const likeButton = this._element.querySelector(".element__content-icon");
-    const deleteButton = this._element.querySelector(".element__delete-icon");
-
-    likeButton.addEventListener("click", () => this._handleLike());
-    deleteButton.addEventListener("click", () => this._handleDelete());
-
-    const previewImage = this._element.querySelector(".element__image");
-
-    previewImage.addEventListener("click", () => {
+    this._likeButton.addEventListener("click", () => this._handleLike());
+    this._deleteButton.addEventListener("click", () => this._handleDelete());
+    this._previewImage.addEventListener("click", () => {
       this._handleImagePreview();
     });
   }
@@ -46,7 +40,8 @@ class Card {
     this._element = null;
   }
 
-  _TextAndImage() {
+  _setTextAndImage() {
+    this._deleteButton = this._element.querySelector(".element__delete-icon");
     this._likeButton = this._element.querySelector(".element__content-icon");
     this._previewImage = this._element.querySelector(".element__image");
     this._previewImage.src = this._link;

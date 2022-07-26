@@ -35,3 +35,6 @@ export const constants = {
   cardSection: "elements",
   cardTemplate: "#card-template",
 };
+
+export const nameInput = ".profile__info-title";
+export const titleInput = ".profile__info-subtitle";
