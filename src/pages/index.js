@@ -77,9 +77,9 @@ editProfile.setEventListeners();
 // Inicio nuevo codigo
 
 const addNewCard = new PopupWithForm({
-  popupSelector: "#create-popup",
-  handleFormSubmit: (data) => {
-    cardList.addItem(createCardElement(data));
+  popupSelector: constants.cardFormPopupSelector,
+  handleFormSubmit: (evt) => {
+    placesGrid.addItem(createCardElement(evt));
   },
 });
 
