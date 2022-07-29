@@ -5,17 +5,15 @@ class Card {
     this._link = data.link;
     this._cardTemplate = document
       .querySelector(cardSelector)
-      .content.querySelector(".element");
+      .content.querySelector("#element");
     this._element;
     this._previewImage;
   }
 
   createCardElement() {
     this._element = this._getCardElement();
-
     this._setTextAndImage();
     this._setEventListeners();
-
     return this._element;
   }
 

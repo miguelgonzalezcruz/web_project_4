@@ -34,7 +34,7 @@ export const constants = {
   errorClass: "popup__error_visible",
   cardSection: "elements",
   cardTemplate: "#card-template",
-  cardFormPopupSelector: "#create-popup",
+  cardFormPopupSelector: ".create-popup",
 };
 
 export const nameInput = ".profile__info-title";
