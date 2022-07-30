@@ -10,6 +10,7 @@ class Card {
     this._previewImage;
   }
 
+  // esto es un method
   createCardElement() {
     this._element = this._getCardElement();
     this._setTextAndImage();

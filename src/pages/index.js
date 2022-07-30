@@ -48,6 +48,8 @@ function renderCard(cardSection, data, cardPopup) {
 //   imagePopup.setEventListeners();
 // });
 
+// -- Pausamos este hasta terminar el Create Card
+
 const imagePopup = new PopupWithImage("#preview-popup");
 imagePopup.setEventListeners();
 
@@ -63,6 +65,8 @@ const placesGrid = new Section(
 
 placesGrid.renderItems();
 
+// -- Pausamos hasta aquí el create popup --
+
 const user = new UserInfo({
   userNameInput: nameInput,
   userJobInput: titleInput,
@@ -76,21 +80,30 @@ const user = new UserInfo({
   editProfile.closePopupWindow();
 });*/
 
-const editProfile = new PopupWithForm({
-  popupSelector: ".edit-popup",
-  handleFormSubmit: (evt) => {
-    evt.addUserInfo;
-  },
-});
+// -- Pausamos este hasta terminar con AddNewCard ---
 
-editProfile.setEventListeners();
+// const editProfile = new PopupWithForm({
+//   popupSelector: ".edit-popup",
+
+//   handleFormSubmit: (evt) => {
+//     evt.addUserInfo;
+//   },
+// });
+
+// editProfile.setEventListeners();
+
+// -- Pausamos hasta aquí ---
 
 // Inicio nuevo codigo
 
 const addNewCard = new PopupWithForm({
   popupSelector: "#create-popup",
+
   handleFormSubmit: (data) => {
-    placesGrid.addItem(createCardElement(data));
+    const cardObject = new Card(data, "#card-template");
+    const newItem = cardObject.createCardElement();
+
+    addNewCard.addItem(newItem);
   },
 });
 
