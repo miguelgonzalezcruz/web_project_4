@@ -31,8 +31,6 @@ const inputValueSubtitle = formEditProfile.querySelector(
 );
 const nameValue = formCreateElement.querySelector(".popup__input_content_name");
 const linkValue = formCreateElement.querySelector(".popup__input_content_link");
-// const nameInput = ".profile__info-title";
-// const titleInput = ".profile__info-subtitle";
 
 function renderCard(cardSection, data, cardPopup) {
   const cardObject = new Card(data, "#card-template", () => {
@@ -43,22 +41,8 @@ function renderCard(cardSection, data, cardPopup) {
   cardSection.addItem(newItem);
 }
 
-//  --------  POPUP IMAGEN --------
-
-// --------- inicio CÓDIGO ANTIGUO  POPUP IMAGEN --------
-
-// const imagePopup = new PopupWithImage({
-//   popupSelector: "preview-popup",
-//   imagePopup.setEventListeners();
-// });
-
-// --------- FIN CÓDIGO ANTIGUO  POPUP IMAGEN --------
-
-// --------- INICIO NUEVO CÓDIGO  POPUP IMAGEN --------
-
 const imagePopup = new PopupWithImage("#preview-popup");
 imagePopup.setEventListeners();
-// --------- FIN NUEVO CÓDIGO  POPUP IMAGEN --------
 
 const placesGrid = new Section(
   {
@@ -72,56 +56,24 @@ const placesGrid = new Section(
 
 placesGrid.renderItems();
 
-// --------- INICIO CÓDIGO EDIT USER --------
-
 const user = new UserInfo({
   userNameInput: nameInput,
   userJobInput: titleInput,
 });
 
-// --------- CODIGO ANTIGUO EDIT PROFILE NO EDITAR --------
-
-// const editProfile = new PopupWithForm(".edit-popup", (values) => {
-//   user.addUserInfo({
-//     userNewNameInput: values.name,
-//     userNewJobInput: values.title,
-//   });
-//   editProfile.closePopupWindow();
-// });
-
-// --------- FIN CODIGO ANTIGUO EDIT PROFILE NO EDITAR --------
-
-// const editProfile = new PopupWithForm({
-//   popupSelector: ".edit-popup",
-
-//   handleFormSubmit: (values) => {
-//     const userNewInput = user.addUserInfo(values);
-
-//     userNewInput.addUserInfo();
-
-//     editProfile.closePopupWindow();
-//   },
-// });
-
-// Tests que voy haciendo
-
 const editProfile = new PopupWithForm({
   popupSelector: ".edit-popup",
 
   handleFormSubmit: (data) => {
-    console.log(2233);
-    console.log(data);
-    console.log(user);
-    user.addUserInfo(data);
+    user.addUserInfo({
+      userNewNameInput: data.name,
+      userNewJobInput: data.title,
+    });
     editProfile.closePopupWindow();
   },
 });
 
-// Hasta aquí tests
-
 editProfile.setEventListeners();
-
-// Inicio nuevo codigo NUEVA CARD ----
 
 const addNewCard = new PopupWithForm({
   popupSelector: "#create-popup",
@@ -134,19 +86,6 @@ const addNewCard = new PopupWithForm({
     addNewCard.closePopupWindow();
   },
 });
-
-// Inicio código antiguo NUEVA CARD --- NO EDITAR
-
-// const addNewCard = new PopupWithForm(".create-popup", () => {
-//   const cardContentNew = {
-//     name: nameValue.value,
-//     link: linkValue.value,
-//   };
-//   renderCard(placesGrid, cardContentNew, imagePopup);
-//   addNewCard.closePopupWindow();
-// });
-
-// Fin código antiguo
 
 addNewCard.setEventListeners();
 

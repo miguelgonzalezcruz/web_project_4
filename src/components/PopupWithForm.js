@@ -10,36 +10,19 @@ class PopupWithForm extends Popup {
     this._submitButtonText = this._submitButton.value;
   }
 
-  // _getInputValues() {
-  //   const newinputs = this._form.querySelectorAll("input");
-
-  //   const inputData = {};
-  //   newinputs.forEach((input) => {
-  //     inputData[input.name] = input.value;
-  //   });
-
-  //   return inputData;
-  // }
-
-  // Este es el antiguo que funciona NO BORRAR
-
   _getInputValues() {
     this._data = {};
-    console.log(this._data);
     this._inputList.forEach((input) => {
       this._data[input.name] = input.value;
     });
     return this._data;
   }
 
-  /// Hasta aquí ---
-
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (evt) => {
       evt.preventDefault();
       this._handleFormSubmit(this._getInputValues());
-      console.log(444444);
     });
   }
 
