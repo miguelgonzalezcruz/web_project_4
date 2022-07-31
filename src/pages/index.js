@@ -43,15 +43,22 @@ function renderCard(cardSection, data, cardPopup) {
   cardSection.addItem(newItem);
 }
 
+//  --------  POPUP IMAGEN --------
+
+// --------- inicio CÓDIGO ANTIGUO  POPUP IMAGEN --------
+
 // const imagePopup = new PopupWithImage({
 //   popupSelector: "preview-popup",
 //   imagePopup.setEventListeners();
 // });
 
-// -- Pausamos este hasta terminar el Create Card
+// --------- FIN CÓDIGO ANTIGUO  POPUP IMAGEN --------
+
+// --------- INICIO NUEVO CÓDIGO  POPUP IMAGEN --------
 
 const imagePopup = new PopupWithImage("#preview-popup");
 imagePopup.setEventListeners();
+// --------- FIN NUEVO CÓDIGO  POPUP IMAGEN --------
 
 const placesGrid = new Section(
   {
@@ -65,36 +72,56 @@ const placesGrid = new Section(
 
 placesGrid.renderItems();
 
-// -- Pausamos hasta aquí el create popup --
+// --------- INICIO CÓDIGO EDIT USER --------
 
 const user = new UserInfo({
   userNameInput: nameInput,
   userJobInput: titleInput,
 });
 
-/*const editProfile = new PopupWithForm(".edit-popup", (values) => {
-  user.addUserInfo({
-    userNewNameInput: values.name,
-    userNewJobInput: values.title,
-  });
-  editProfile.closePopupWindow();
-});*/
+// --------- CODIGO ANTIGUO EDIT PROFILE NO EDITAR --------
 
-// -- Pausamos este hasta terminar con AddNewCard ---
+// const editProfile = new PopupWithForm(".edit-popup", (values) => {
+//   user.addUserInfo({
+//     userNewNameInput: values.name,
+//     userNewJobInput: values.title,
+//   });
+//   editProfile.closePopupWindow();
+// });
+
+// --------- FIN CODIGO ANTIGUO EDIT PROFILE NO EDITAR --------
 
 // const editProfile = new PopupWithForm({
 //   popupSelector: ".edit-popup",
 
-//   handleFormSubmit: (evt) => {
-//     evt.addUserInfo;
+//   handleFormSubmit: (values) => {
+//     const userNewInput = user.addUserInfo(values);
+
+//     userNewInput.addUserInfo();
+
+//     editProfile.closePopupWindow();
 //   },
 // });
 
-// editProfile.setEventListeners();
+// Tests que voy haciendo
 
-// -- Pausamos hasta aquí ---
+const editProfile = new PopupWithForm({
+  popupSelector: ".edit-popup",
 
-// Inicio nuevo codigo
+  handleFormSubmit: (data) => {
+    console.log(2233);
+    console.log(data);
+    console.log(user);
+    user.addUserInfo(data);
+    editProfile.closePopupWindow();
+  },
+});
+
+// Hasta aquí tests
+
+editProfile.setEventListeners();
+
+// Inicio nuevo codigo NUEVA CARD ----
 
 const addNewCard = new PopupWithForm({
   popupSelector: "#create-popup",
@@ -103,11 +130,12 @@ const addNewCard = new PopupWithForm({
     const cardObject = new Card(data, "#card-template");
     const newItem = cardObject.createCardElement();
 
-    addNewCard.addItem(newItem);
+    placesGrid.addItem(newItem);
+    addNewCard.closePopupWindow();
   },
 });
 
-// Inicio código antiguo NO EDITAR
+// Inicio código antiguo NUEVA CARD --- NO EDITAR
 
 // const addNewCard = new PopupWithForm(".create-popup", () => {
 //   const cardContentNew = {
