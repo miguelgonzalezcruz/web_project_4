@@ -42,6 +42,7 @@ function renderCard(cardSection, data, cardPopup) {
 }
 
 const imagePopup = new PopupWithImage("#preview-popup");
+
 imagePopup.setEventListeners();
 
 const placesGrid = new Section(
@@ -79,7 +80,10 @@ const addNewCard = new PopupWithForm({
   popupSelector: "#create-popup",
 
   handleFormSubmit: (data) => {
-    const cardObject = new Card(data, "#card-template");
+    const cardObject = new Card(
+      data,
+      "#card-template" /* Here the 3rd argument to have the image popup*/
+    );
     const newItem = cardObject.createCardElement();
 
     placesGrid.addItem(newItem);

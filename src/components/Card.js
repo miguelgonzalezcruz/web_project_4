@@ -24,9 +24,10 @@ class Card {
   _setEventListeners() {
     this._likeButton.addEventListener("click", () => this._handleLike());
     this._deleteButton.addEventListener("click", () => this._handleDelete());
-    this._previewImage.addEventListener("click", () => {
-      this._handleImagePreview();
-    });
+    this._previewImage.addEventListener("click", () =>
+      this._handleImagePreview()
+    );
+    console.log(this._previewImage);
   }
 
   _handleLike() {
