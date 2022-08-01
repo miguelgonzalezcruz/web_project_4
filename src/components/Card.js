@@ -27,7 +27,6 @@ class Card {
     this._previewImage.addEventListener("click", () =>
       this._handleImagePreview()
     );
-    console.log(this._previewImage);
   }
 
   _handleLike() {

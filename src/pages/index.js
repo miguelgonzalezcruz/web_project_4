@@ -45,6 +45,11 @@ const imagePopup = new PopupWithImage("#preview-popup");
 
 imagePopup.setEventListeners();
 
+function handleImageClick(data) {
+  const cardPopup = new PopupWithImage("#preview-popup");
+  cardPopup.openPopupWindow(data);
+}
+
 const placesGrid = new Section(
   {
     items: initialCards,
@@ -80,10 +85,9 @@ const addNewCard = new PopupWithForm({
   popupSelector: "#create-popup",
 
   handleFormSubmit: (data) => {
-    const cardObject = new Card(
-      data,
-      "#card-template" /* Here the 3rd argument to have the image popup*/
-    );
+    const cardObject = new Card(data, "#card-template", () => {
+      handleImageClick(data);
+    });
     const newItem = cardObject.createCardElement();
 
     placesGrid.addItem(newItem);
