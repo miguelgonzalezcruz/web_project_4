@@ -77,7 +77,7 @@ const addNewCard = new PopupWithForm({
   popupSelector: "#create-popup",
 
   handleFormSubmit: (data) => {
-    renderCard(placesGrid, data, imagePopup);
+    renderCard(placesGrid, data);
     addNewCard.closePopupWindow();
   },
 });
