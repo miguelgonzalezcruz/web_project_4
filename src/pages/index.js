@@ -20,7 +20,6 @@ const formEditProfile = document.querySelector(".popup__content-form");
 // --------------- New Card Const ----------------------------------------------
 const profileAddButton = document.querySelector(".profile__add");
 const createPopupElement = document.querySelector(".create-popup");
-const formCreateElement = document.querySelector(".popup__create-form");
 
 // --------------- Forms -------------------------------------------------------
 const inputValueTitle = formEditProfile.querySelector(
@@ -29,25 +28,18 @@ const inputValueTitle = formEditProfile.querySelector(
 const inputValueSubtitle = formEditProfile.querySelector(
   ".popup__input_content_role"
 );
-const nameValue = formCreateElement.querySelector(".popup__input_content_name");
-const linkValue = formCreateElement.querySelector(".popup__input_content_link");
-
-function renderCard(cardSection, data, cardPopup) {
-  const cardObject = new Card(data, "#card-template", () => {
-    cardPopup.openPopupWindow(data);
-  });
-
-  const newItem = cardObject.createCardElement();
-  cardSection.addItem(newItem);
-}
 
 const imagePopup = new PopupWithImage("#preview-popup");
 
 imagePopup.setEventListeners();
 
-function handleImageClick(data) {
-  const cardPopup = new PopupWithImage("#preview-popup");
-  cardPopup.openPopupWindow(data);
+function renderCard(cardSection, data) {
+  const cardObject = new Card(data, "#card-template", () => {
+    imagePopup.openPopupWindow(data);
+  });
+
+  const newItem = cardObject.createCardElement();
+  cardSection.addItem(newItem);
 }
 
 const placesGrid = new Section(
@@ -85,12 +77,7 @@ const addNewCard = new PopupWithForm({
   popupSelector: "#create-popup",
 
   handleFormSubmit: (data) => {
-    const cardObject = new Card(data, "#card-template", () => {
-      handleImageClick(data);
-    });
-    const newItem = cardObject.createCardElement();
-
-    placesGrid.addItem(newItem);
+    renderCard(placesGrid, data, imagePopup);
     addNewCard.closePopupWindow();
   },
 });
