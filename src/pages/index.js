@@ -6,11 +6,13 @@ import {
   constants,
   nameInput,
   titleInput,
+  avatarInput,
 } from "../utils/constants.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
+import Api from "../utils/Api";
 
 // --------------- Edit Profile Const --------------------------------------------
 const profileEditButton = document.querySelector(".profile__info-edit");
@@ -30,8 +32,36 @@ const inputValueSubtitle = formEditProfile.querySelector(
 );
 
 const imagePopup = new PopupWithImage("#preview-popup");
-
 imagePopup.setEventListeners();
+
+// La información del perfil de usuario
+const user = new UserInfo({
+  userNameInput: nameInput,
+  userJobInput: titleInput,
+  userAvatarInput: avatarInput,
+});
+
+// Declaramos la API
+
+const api = new Api({
+  //La url de la API con la info del grupo
+  url: " https://around.nomoreparties.co/v1/group-12",
+  //El header con el token de acceso
+  headers: {
+    authorization: "f0f5b035-9e61-4cc2-926f-83804fb546a7",
+    "Content-Type": "application/json",
+  },
+});
+
+// Llamamos a la API para recoger la info del perfil de usuario
+
+api.getUserInfo().then((data) => {
+  user.addUserInfo({
+    userNewNameInput: data.name,
+    userNewJobInput: data.title,
+    userNewAvatarInput: data.avatar,
+  });
+});
 
 function renderCard(cardSection, data) {
   const cardObject = new Card(data, "#card-template", () => {
@@ -53,11 +83,6 @@ const placesGrid = new Section(
 );
 
 placesGrid.renderItems();
-
-const user = new UserInfo({
-  userNameInput: nameInput,
-  userJobInput: titleInput,
-});
 
 const editProfile = new PopupWithForm({
   popupSelector: ".edit-popup",

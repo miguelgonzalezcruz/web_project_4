@@ -28,15 +28,27 @@
 
       <main>
         <section class="profile">
-          <div class="profile__avatar"></div>
+          <div class="profile__avatar">
+            <img
+              class="profile__avatar-image"
+              src="<%=require('./images/profile-img.jpg')%>"
+              alt="user-image"
+            />
+            <!-- <button
+              class="profile__avatar-edit"
+              type="button"
+              aria-label="Edit"
+              id="profile__avatar-edit"
+            ></button> -->
+          </div>
           <div class="profile__info">
-            <h1 class="profile__info-title">Jacques Cousteau</h1>
+            <h1 class="profile__info-title"></h1>
             <button
               class="profile__info-edit"
               type="button"
               aria-label="Edit"
             ></button>
-            <p class="profile__info-subtitle">Explorer</p>
+            <p class="profile__info-subtitle"></p>
           </div>
           <button class="profile__add" type="button" aria-label="Add"></button>
         </section>
