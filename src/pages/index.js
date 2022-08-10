@@ -58,19 +58,12 @@ const api = new Api({
 api.getUserInfo().then((data) => {
   user.addUserInfo({
     userNewNameInput: data.name,
-    userNewJobInput: data.title,
+    userNewJobInput: data.about,
     userNewAvatarInput: data.avatar,
   });
 });
 
-function renderCard(cardSection, data) {
-  const cardObject = new Card(data, "#card-template", () => {
-    imagePopup.openPopupWindow(data);
-  });
-
-  const newItem = cardObject.createCardElement();
-  cardSection.addItem(newItem);
-}
+// Llamamos a la API para recoger la info de las tarjetas iniciales
 
 const placesGrid = new Section(
   {
@@ -82,21 +75,57 @@ const placesGrid = new Section(
   ".elements"
 );
 
-placesGrid.renderItems();
+api.getInitialCards().then((cards) => {
+  placesGrid.setupItems(cards);
+  placesGrid.renderItems();
+});
+
+//---- Start New Code Task 3 Editing Profile ----
 
 const editProfile = new PopupWithForm({
   popupSelector: ".edit-popup",
-
   handleFormSubmit: (data) => {
-    user.addUserInfo({
-      userNewNameInput: data.name,
-      userNewJobInput: data.title,
+    api.editUserInfo(data).then((data) => {
+      user.addUserInfo({
+        userNewNameInput: data.name,
+        userNewJobInput: data.about,
+        userNewAvatarInput: data.avatar,
+      });
     });
     editProfile.closePopupWindow();
   },
 });
 
+// ------ End New Code Task 3 ---------------
+
+// Start previous Code DO NOT DELETE
+
+// const editProfile = new PopupWithForm({
+//   popupSelector: ".edit-popup",
+
+//   handleFormSubmit: (data) => {
+//     user.addUserInfo({
+//       userNewNameInput: data.name,
+//       userNewJobInput: data.title,
+//     });
+//     editProfile.closePopupWindow();
+//   },
+// });
+
+// End previous Code
+
 editProfile.setEventListeners();
+
+function renderCard(cardSection, data) {
+  const cardObject = new Card(data, "#card-template", () => {
+    imagePopup.openPopupWindow(data);
+  });
+
+  const newItem = cardObject.createCardElement();
+  cardSection.addItem(newItem);
+}
+
+placesGrid.renderItems();
 
 const addNewCard = new PopupWithForm({
   popupSelector: "#create-popup",

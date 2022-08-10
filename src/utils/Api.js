@@ -19,6 +19,38 @@ class Api {
         console.log(err);
       });
   }
+
+  getInitialCards() {
+    return fetch(this._url + "/cards", {
+      headers: this._headers,
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  // --- Work in Progress
+
+  editUserInfo(data) {
+    return fetch(this._url + "/users/me", {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        name: data.name,
+        about: data.about,
+        avatar: data.avatar,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 export default Api;

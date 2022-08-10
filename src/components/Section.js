@@ -15,6 +15,10 @@ class Section {
       this._renderer(item);
     });
   }
+
+  setupItems(items) {
+    this._itemsArray = items;
+  }
 }
 
 export default Section;
