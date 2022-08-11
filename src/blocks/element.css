@@ -59,6 +59,13 @@
   background-image: url("../images/black-heart-icon.svg");
 }
 
+.element__content-number {
+  margin: 0;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.23;
+}
+
 .element__delete-icon {
   background-image: url("../images/trash-icon.svg");
   width: 21px;
@@ -77,3 +84,4 @@
   opacity: 0.5;
   cursor: pointer;
 }
+
