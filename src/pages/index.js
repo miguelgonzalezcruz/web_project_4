@@ -65,6 +65,13 @@ api.getUserInfo().then((data) => {
 
 // Llamamos a la API para recoger la info de las tarjetas iniciales
 
+// --- STEP 5 COUNT THE LIKES ------
+function handleCardLikes(likes) {
+  api.getCardsLikes().then((likes) => {
+    getLikes(likes);
+  });
+}
+
 const placesGrid = new Section(
   {
     items: initialCards,
@@ -79,6 +86,22 @@ api.getInitialCards().then((cards) => {
   placesGrid.setupItems(cards);
   placesGrid.renderItems();
 });
+
+function renderCard(cardSection, data) {
+  const cardObject = new Card(
+    data,
+    "#card-template",
+    () => {
+      imagePopup.openPopupWindow(data);
+    },
+    handleCardLikes // Call the likes when rendering
+  );
+
+  const newItem = cardObject.createCardElement();
+  cardSection.addItem(newItem);
+}
+
+placesGrid.renderItems();
 
 //---- Start New Code Task 3 Editing Profile ----
 
@@ -96,47 +119,37 @@ const editProfile = new PopupWithForm({
   },
 });
 
-// ------ End New Code Task 3 ---------------
-
-// Start previous Code DO NOT DELETE
-
-// const editProfile = new PopupWithForm({
-//   popupSelector: ".edit-popup",
-
-//   handleFormSubmit: (data) => {
-//     user.addUserInfo({
-//       userNewNameInput: data.name,
-//       userNewJobInput: data.title,
-//     });
-//     editProfile.closePopupWindow();
-//   },
-// });
-
-// End previous Code
-
 editProfile.setEventListeners();
 
-function renderCard(cardSection, data) {
-  const cardObject = new Card(data, "#card-template", () => {
-    imagePopup.openPopupWindow(data);
-  });
+// ------ End New Code Task 3 ---------------
 
-  const newItem = cardObject.createCardElement();
-  cardSection.addItem(newItem);
-}
+// ---- Render cards -----
+// function renderCard(cardSection, data) {
+//   const cardObject = new Card(data, "#card-template", () => {
+//     imagePopup.openPopupWindow(data);
+//   });
 
-placesGrid.renderItems();
+//   const newItem = cardObject.createCardElement();
+//   cardSection.addItem(newItem);
+// }
+
+// placesGrid.renderItems();
+
+//---- Inicio Crear nuevas tarjetas
 
 const addNewCard = new PopupWithForm({
   popupSelector: "#create-popup",
-
   handleFormSubmit: (data) => {
-    renderCard(placesGrid, data);
-    addNewCard.closePopupWindow();
+    api.postNewCard(data).then((data) => {
+      renderCard(placesGrid, data);
+      addNewCard.closePopupWindow();
+    });
   },
 });
 
 addNewCard.setEventListeners();
+
+//---- Fin Crear nuevas tarjetas
 
 const editFormValidator = new FormValidator(constants, editPopupElement);
 const addFormValidator = new FormValidator(constants, createPopupElement);
