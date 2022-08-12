@@ -39,6 +39,21 @@ class Api {
       body: JSON.stringify({
         name: data.name,
         about: data.about,
+      }),
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  editUserPicture(data) {
+    return fetch(this._url + "/users/me/avatar", {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
         avatar: data.avatar,
       }),
     })
@@ -58,20 +73,6 @@ class Api {
         name: data.name,
         link: data.link,
       }),
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  // --- Work in Progress
-
-  getCardsLikes() {
-    return fetch(this._url + "/cards", {
-      headers: this._headers,
     })
       .then((res) => {
         return res.json();

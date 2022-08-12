@@ -3,13 +3,11 @@ class Card {
     this._handleImagePreview = handleImagePreview;
     this._name = data.name;
     this._link = data.link;
-    this._likes = data.likes; // Nuevo - Testing Step 5
     this._cardTemplate = document
       .querySelector(cardSelector)
       .content.querySelector("#element");
     this._element;
     this._previewImage;
-    this._numOfLikes = document.querySelector(".element__content-number"); // Nuevo - Testing Step 5
   }
 
   createCardElement() {
@@ -17,17 +15,6 @@ class Card {
     this._setTextAndImage();
     this._setEventListeners();
     return this._element;
-  }
-
-  getLikes(likes) {
-    // Nuevo - Testing Step 5
-    this._likes = likes;
-    this._addCardsLikesCount();
-  }
-
-  _addCardsLikesCount() {
-    // Nuevo - Testing Step 5
-    this._numOfLikes.textContent = this._likes.length;
   }
 
   _getCardElement() {

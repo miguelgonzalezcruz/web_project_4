@@ -30,12 +30,12 @@
         <section class="profile">
           <div class="profile__avatar">
             <img class="profile__avatar-image" src=" " alt=" " />
-            <!-- <button
+            <button
               class="profile__avatar-edit"
               type="button"
               aria-label="Edit"
               id="profile__avatar-edit"
-            ></button> -->
+            ></button>
           </div>
           <div class="profile__info">
             <h1 class="profile__info-title"></h1>
@@ -143,6 +143,44 @@
           </form>
         </div>
       </div>
+
+            <!-- avatar popup -->
+            <div class="popup avatar-popup" id="avatar-popup">
+              <div class="popup__content">
+                <button
+                  class="popup__close"
+                  type="button"
+                  aria-label="Close"
+                ></button>
+                <h2 class="popup__content-title">Change profile picture</h2>
+                <form
+                  class="popup__form popup__avatar-form"
+                  name="form-avatar-element"
+                  novalidate
+                >      
+                  <input
+                    type="url"
+                    name="avatar"
+                    class="popup__input popup__input_avatar_link"
+                    placeholder="Avatar link"
+                    required
+                    minlength="5"
+                    id="avatar-link"
+                  />
+                  <span class="popup__error" id="avatar-link-error"></span>
+      
+                  <button
+                    type="submit"
+                    class="popup__button popup__button_disabled"
+                    aria-label="Save"
+                    id="avatar-button"
+                  >
+                    Save
+                  </button>
+                </form>
+              </div>
+            </div>
+
       <!-- preview popup -->
       <div class="popup preview-popup" id="preview-popup">
         <div class="popup__content popup__content_type_preview">

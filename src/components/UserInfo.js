@@ -11,6 +11,10 @@ class UserInfo {
     this._userAvatarElement.src = userNewAvatarInput;
   }
 
+  addUserAvatar({ userNewAvatarInput }) {
+    this._userAvatarElement.src = userNewAvatarInput;
+  }
+
   getUserInfo() {
     const newObject = {
       userNameInput: this._userNameElement.textContent,

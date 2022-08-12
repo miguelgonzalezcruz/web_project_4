@@ -35,6 +35,7 @@ export const constants = {
   cardSection: "elements",
   cardTemplate: "#card-template",
   cardFormPopupSelector: ".create-popup",
+  avatarFormPopupSelector: "avatar-popup",
 };
 
 export const nameInput = ".profile__info-title";

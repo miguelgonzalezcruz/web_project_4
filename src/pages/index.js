@@ -18,6 +18,9 @@ import Api from "../utils/Api";
 const profileEditButton = document.querySelector(".profile__info-edit");
 const editPopupElement = document.querySelector(".edit-popup");
 const formEditProfile = document.querySelector(".popup__content-form");
+const formAvatarEdit = document.querySelector(".popup__avatar-form");
+const avatarEditButton = document.querySelector(".profile__avatar-edit");
+const avatarPopupElement = document.querySelector(".avatar-popup");
 
 // --------------- New Card Const ----------------------------------------------
 const profileAddButton = document.querySelector(".profile__add");
@@ -30,6 +33,8 @@ const inputValueTitle = formEditProfile.querySelector(
 const inputValueSubtitle = formEditProfile.querySelector(
   ".popup__input_content_role"
 );
+
+const inputAvatar = formAvatarEdit.querySelector(".popup__input_avatar_link");
 
 const imagePopup = new PopupWithImage("#preview-popup");
 imagePopup.setEventListeners();
@@ -53,55 +58,69 @@ const api = new Api({
   },
 });
 
+// Backup de cod que funciona
+// api.getInitialCards().then((cards) => {
+//   placesGrid.setupItems(cards);
+//   placesGrid.renderItems();
+// });
+
 // Llamamos a la API para recoger la info del perfil de usuario
 
 api.getUserInfo().then((data) => {
   user.addUserInfo({
+    // en UserInfo.js
     userNewNameInput: data.name,
     userNewJobInput: data.about,
     userNewAvatarInput: data.avatar,
   });
 });
 
+// **** START ALL CARD RELATED ********
+
 // Llamamos a la API para recoger la info de las tarjetas iniciales
 
-// --- STEP 5 COUNT THE LIKES ------
-function handleCardLikes(likes) {
-  api.getCardsLikes().then((likes) => {
-    getLikes(likes);
-  });
-}
+api.getInitialCards().then((cards) => {
+  placesGrid.setupItems(cards); // en section.js
+  placesGrid.renderItems();
+});
 
 const placesGrid = new Section(
   {
     items: initialCards,
     renderer: (data) => {
+      //En section
       renderCard(placesGrid, data, imagePopup);
     },
   },
   ".elements"
 );
 
-api.getInitialCards().then((cards) => {
-  placesGrid.setupItems(cards);
-  placesGrid.renderItems();
-});
-
 function renderCard(cardSection, data) {
-  const cardObject = new Card(
-    data,
-    "#card-template",
-    () => {
-      imagePopup.openPopupWindow(data);
-    },
-    handleCardLikes // Call the likes when rendering
-  );
+  const cardObject = new Card(data, "#card-template", () => {
+    imagePopup.openPopupWindow(data);
+  });
 
   const newItem = cardObject.createCardElement();
   cardSection.addItem(newItem);
 }
 
 placesGrid.renderItems();
+
+//---- Inicio Crear nuevas tarjetas
+
+const addNewCard = new PopupWithForm({
+  popupSelector: "#create-popup",
+  handleFormSubmit: (data) => {
+    api.postNewCard(data).then((data) => {
+      renderCard(placesGrid, data);
+      addNewCard.closePopupWindow();
+    });
+  },
+});
+
+addNewCard.setEventListeners();
+
+// **** FINISH ALL CARD RELATED *****
 
 //---- Start New Code Task 3 Editing Profile ----
 
@@ -121,41 +140,31 @@ const editProfile = new PopupWithForm({
 
 editProfile.setEventListeners();
 
-// ------ End New Code Task 3 ---------------
+// ----- Start Updating profile picture ------
 
-// ---- Render cards -----
-// function renderCard(cardSection, data) {
-//   const cardObject = new Card(data, "#card-template", () => {
-//     imagePopup.openPopupWindow(data);
-//   });
-
-//   const newItem = cardObject.createCardElement();
-//   cardSection.addItem(newItem);
-// }
-
-// placesGrid.renderItems();
-
-//---- Inicio Crear nuevas tarjetas
-
-const addNewCard = new PopupWithForm({
-  popupSelector: "#create-popup",
+const editProfilePicture = new PopupWithForm({
+  popupSelector: ".avatar-popup",
   handleFormSubmit: (data) => {
-    api.postNewCard(data).then((data) => {
-      renderCard(placesGrid, data);
-      addNewCard.closePopupWindow();
+    api.editUserPicture(data).then((data) => {
+      user.addUserAvatar({
+        userNewAvatarInput: data.avatar,
+      });
     });
+    editProfilePicture.closePopupWindow();
   },
 });
 
-addNewCard.setEventListeners();
+editProfilePicture.setEventListeners();
 
-//---- Fin Crear nuevas tarjetas
+// ---- Finish Updating profile picture -----
 
 const editFormValidator = new FormValidator(constants, editPopupElement);
 const addFormValidator = new FormValidator(constants, createPopupElement);
+const avatarFormValidator = new FormValidator(constants, avatarPopupElement);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
+avatarFormValidator.enableValidation();
 
 profileAddButton.addEventListener("click", () => {
   addNewCard.openPopupWindow();
@@ -164,10 +173,15 @@ profileAddButton.addEventListener("click", () => {
 
 profileEditButton.addEventListener("click", () => {
   const userInput = user.getUserInfo();
-
   inputValueTitle.value = userInput.userNameInput;
   inputValueSubtitle.value = userInput.userJobInput;
   editProfile.openPopupWindow();
-
   editFormValidator.resetValidation();
+});
+
+avatarEditButton.addEventListener("click", () => {
+  const userInput = user.getUserInfo();
+  inputAvatar.value = userInput.userAvatarInput;
+  editProfilePicture.openPopupWindow();
+  avatarFormValidator.resetValidation();
 });

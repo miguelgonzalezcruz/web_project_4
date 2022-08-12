@@ -17,7 +17,7 @@ class Section {
   }
 
   setupItems(items) {
-    //used to set the items after initialization
+    //Establece los items
     this._itemsArray = items;
   }
 }
