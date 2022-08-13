@@ -1,15 +1,18 @@
 class Card {
   constructor(data, cardSelector, handleImagePreview) {
+    // ---
     this._createdAt = data.createdAt;
     this._likes = data.likes;
     this._link = data.link;
     this._name = data.name;
     this._id = data._id;
-    // this.ownerId = data.owner._id;
-    this._handleImagePreview = handleImagePreview;
+    // --
     this._cardTemplate = document
       .querySelector(cardSelector)
       .content.querySelector("#element");
+    // --
+    this._handleImagePreview = handleImagePreview;
+    // --
     this._element;
     this._previewImage;
   }
@@ -21,19 +24,6 @@ class Card {
     return this._element;
   }
 
-  countLikes(likes) {
-    this._likes = likes;
-    this._renderlikes();
-  }
-
-  _renderlikes() {
-    this._likesCount.textContent = this.likes.length;
-  }
-
-  hasLikes() {
-    return this._likes.some((like) => like._id === this.ownerId);
-  }
-
   _setTextAndImage() {
     this._deleteButton = this._element.querySelector(".element__delete-icon");
     this._likeButton = this._element.querySelector(".element__content-icon");
@@ -43,10 +33,8 @@ class Card {
     this._previewImage.alt = this._name;
     this._element.querySelector(".element__content-title").textContent =
       this._name;
-    this._element.querySelector(".element__content-number").textContent =
-      this._likes.length;
-    // este sería para empujar los datos de clicks nuevos
-    this._likesCount = this._element.querySelector(".element__content-number");
+    // this._element.querySelector(".element__content-number").textContent =
+    //   this._likes.length;
   }
 
   _getCardElement() {

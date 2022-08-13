@@ -41,3 +41,4 @@ export const constants = {
 export const nameInput = ".profile__info-title";
 export const titleInput = ".profile__info-subtitle";
 export const avatarInput = ".profile__avatar-image";
+export const cardSection = ".elements";
