@@ -74,6 +74,9 @@
   margin-top: 36px;
 }
 
+.popup__avatar-form {
+  margin-top: 36px;
+}
 .popup__input {
   border: none;
   border-bottom: 1px solid rgba(84, 84, 84, 0.2);

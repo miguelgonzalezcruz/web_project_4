@@ -29,11 +29,13 @@
   background-image: url("../images/edit-avatar-icon.svg");
   width: 120px;
   height: 120px;
-  background-color: #c4c4c4;
+  background-color: #000000;
   background-position: center;
   background-repeat: no-repeat;
   opacity: 0;
   border-radius: 50%;
+  border-width: thin;
+  border-color: #000000;
 }
 
 .profile__avatar-edit:hover {
