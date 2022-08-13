@@ -7,6 +7,7 @@ class PopupWithForm extends Popup {
     this._form = this._popup.querySelector(".popup__form");
     this._inputList = this._form.querySelectorAll(".popup__input");
     this._submitButton = this._form.querySelector(".popup__button");
+    this._normalButtonText = this._submitButton.textContent;
     this._submitButtonText = this._submitButton.value;
   }
 
@@ -40,6 +41,14 @@ class PopupWithForm extends Popup {
   openPopupWindow() {
     super.openPopupWindow();
     this._submitButton.value = this._submitButtonText;
+  }
+
+  loadingText(isLoading) {
+    if (isLoading === true) {
+      this._submitButton.textContent = "Loading ...";
+    } else {
+      this._submitButton.textContent = this._normalButtonText;
+    }
   }
 }
 

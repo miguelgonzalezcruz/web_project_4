@@ -58,12 +58,6 @@ const api = new Api({
   },
 });
 
-// Backup de cod que funciona
-// api.getInitialCards().then((cards) => {
-//   placesGrid.setupItems(cards);
-//   placesGrid.renderItems();
-// });
-
 // Llamamos a la API para recoger la info del perfil de usuario
 
 api.getUserInfo().then((data) => {
@@ -111,10 +105,14 @@ placesGrid.renderItems();
 const addNewCard = new PopupWithForm({
   popupSelector: "#create-popup",
   handleFormSubmit: (data) => {
-    api.postNewCard(data).then((data) => {
-      renderCard(placesGrid, data);
-      addNewCard.closePopupWindow();
-    });
+    addNewCard.loadingText(true);
+    api
+      .postNewCard(data)
+      .then((data) => {
+        renderCard(placesGrid, data);
+        addNewCard.closePopupWindow();
+      })
+      .finally(() => addNewCard.loadingText(false));
   },
 });
 
@@ -127,13 +125,17 @@ addNewCard.setEventListeners();
 const editProfile = new PopupWithForm({
   popupSelector: ".edit-popup",
   handleFormSubmit: (data) => {
-    api.editUserInfo(data).then((data) => {
-      user.addUserInfo({
-        userNewNameInput: data.name,
-        userNewJobInput: data.about,
-        userNewAvatarInput: data.avatar,
-      });
-    });
+    editProfile.loadingText(true);
+    api
+      .editUserInfo(data)
+      .then((data) => {
+        user.addUserInfo({
+          userNewNameInput: data.name,
+          userNewJobInput: data.about,
+          userNewAvatarInput: data.avatar,
+        });
+      })
+      .finally(() => editProfile.loadingText(false));
     editProfile.closePopupWindow();
   },
 });
@@ -145,11 +147,15 @@ editProfile.setEventListeners();
 const editProfilePicture = new PopupWithForm({
   popupSelector: ".avatar-popup",
   handleFormSubmit: (data) => {
-    api.editUserPicture(data).then((data) => {
-      user.addUserAvatar({
-        userNewAvatarInput: data.avatar,
-      });
-    });
+    editProfilePicture.loadingText(true);
+    api
+      .editUserPicture(data)
+      .then((data) => {
+        user.addUserAvatar({
+          userNewAvatarInput: data.avatar,
+        });
+      })
+      .finally(() => editProfilePicture.loadingText(false));
     editProfilePicture.closePopupWindow();
   },
 });

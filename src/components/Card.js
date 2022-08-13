@@ -1,8 +1,12 @@
 class Card {
   constructor(data, cardSelector, handleImagePreview) {
-    this._handleImagePreview = handleImagePreview;
-    this._name = data.name;
+    this._createdAt = data.createdAt;
+    this._likes = data.likes;
     this._link = data.link;
+    this._name = data.name;
+    this._id = data._id;
+    // this.ownerId = data.owner._id;
+    this._handleImagePreview = handleImagePreview;
     this._cardTemplate = document
       .querySelector(cardSelector)
       .content.querySelector("#element");
@@ -15,6 +19,34 @@ class Card {
     this._setTextAndImage();
     this._setEventListeners();
     return this._element;
+  }
+
+  countLikes(likes) {
+    this._likes = likes;
+    this._renderlikes();
+  }
+
+  _renderlikes() {
+    this._likesCount.textContent = this.likes.length;
+  }
+
+  hasLikes() {
+    return this._likes.some((like) => like._id === this.ownerId);
+  }
+
+  _setTextAndImage() {
+    this._deleteButton = this._element.querySelector(".element__delete-icon");
+    this._likeButton = this._element.querySelector(".element__content-icon");
+    this._previewImage = this._element.querySelector(".element__image");
+    this._likeCount = this._element.querySelector(".element__content-number");
+    this._previewImage.src = this._link;
+    this._previewImage.alt = this._name;
+    this._element.querySelector(".element__content-title").textContent =
+      this._name;
+    this._element.querySelector(".element__content-number").textContent =
+      this._likes.length;
+    // este sería para empujar los datos de clicks nuevos
+    this._likesCount = this._element.querySelector(".element__content-number");
   }
 
   _getCardElement() {
@@ -36,16 +68,6 @@ class Card {
   _handleDelete() {
     this._element.remove();
     this._element = null;
-  }
-
-  _setTextAndImage() {
-    this._deleteButton = this._element.querySelector(".element__delete-icon");
-    this._likeButton = this._element.querySelector(".element__content-icon");
-    this._previewImage = this._element.querySelector(".element__image");
-    this._previewImage.src = this._link;
-    this._previewImage.alt = this._name;
-    this._element.querySelector(".element__content-title").textContent =
-      this._name;
   }
 }
 export default Card;
