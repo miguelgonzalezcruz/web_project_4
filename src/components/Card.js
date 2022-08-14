@@ -15,6 +15,11 @@ class Card {
     // --
     this._element;
     this._previewImage;
+    this._totalLikes;
+  }
+
+  _showlikes() {
+    this._totalLikes.textContent = this._likes.length;
   }
 
   _getCardElement() {
@@ -25,6 +30,7 @@ class Card {
     this._element = this._getCardElement();
     this._setTextAndImage();
     this._setEventListeners();
+    this._showlikes();
     return this._element;
   }
 
@@ -32,13 +38,11 @@ class Card {
     this._deleteButton = this._element.querySelector(".element__delete-icon");
     this._likeButton = this._element.querySelector(".element__content-icon");
     this._previewImage = this._element.querySelector(".element__image");
-    this._likeCount = this._element.querySelector(".element__content-number");
     this._previewImage.src = this._link;
     this._previewImage.alt = this._name;
     this._element.querySelector(".element__content-title").textContent =
       this._name;
-    // this._element.querySelector(".element__content-number").textContent =
-    //   this._likes.length;
+    this._totalLikes = this._element.querySelector(".element__content-number");
   }
 
   _getCardElement() {

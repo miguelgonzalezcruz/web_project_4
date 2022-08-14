@@ -79,6 +79,8 @@ const placesGrid = new Section(
   ".elements"
 );
 
+// Llamamos a la API para recoger la info de las cards
+
 api
   .getInitialCards()
   .then((cards) => {
@@ -89,8 +91,9 @@ api
     console.log(err);
   });
 
+// ------- Render Card ---------
+
 function renderCard(cardSection, data) {
-  // Aquí añadiremos los likes y el botón borrar
   const cardObject = new Card(data, "#card-template", () => {
     imagePopup.openPopupWindow(data);
   });
