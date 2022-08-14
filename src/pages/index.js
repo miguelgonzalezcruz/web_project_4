@@ -33,7 +33,6 @@ const inputValueTitle = formEditProfile.querySelector(
 const inputValueSubtitle = formEditProfile.querySelector(
   ".popup__input_content_role"
 );
-
 const inputAvatar = formAvatarEdit.querySelector(".popup__input_avatar_link");
 
 const imagePopup = new PopupWithImage("#preview-popup");
@@ -69,18 +68,9 @@ api.getUserInfo().then((data) => {
   });
 });
 
-// **** START ALL CARD RELATED ********
-
-// Llamamos a la API para recoger la info de las tarjetas iniciales
-
-api.getInitialCards().then((cards) => {
-  placesGrid.setupItems(cards); // en section.js
-  placesGrid.renderItems();
-});
-
 const placesGrid = new Section(
   {
-    items: initialCards,
+    items: null, // constants.initialcards
     renderer: (data) => {
       //En section
       renderCard(placesGrid, data, imagePopup);
@@ -89,7 +79,18 @@ const placesGrid = new Section(
   ".elements"
 );
 
+api
+  .getInitialCards()
+  .then((cards) => {
+    placesGrid.setupItems(cards);
+    placesGrid.renderItems();
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
 function renderCard(cardSection, data) {
+  // Aquí añadiremos los likes y el botón borrar
   const cardObject = new Card(data, "#card-template", () => {
     imagePopup.openPopupWindow(data);
   });
@@ -97,8 +98,6 @@ function renderCard(cardSection, data) {
   const newItem = cardObject.createCardElement();
   cardSection.addItem(newItem);
 }
-
-placesGrid.renderItems();
 
 //---- Inicio Crear nuevas tarjetas
 

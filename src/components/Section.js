@@ -10,7 +10,12 @@ class Section {
     this._element.prepend(element);
   }
 
+  clear() {
+    this._element.innerHTML = "";
+  }
+
   renderItems() {
+    this.clear();
     this._itemsArray.forEach((item) => {
       this._renderer(item);
     });

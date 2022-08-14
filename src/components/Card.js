@@ -17,6 +17,10 @@ class Card {
     this._previewImage;
   }
 
+  _getCardElement() {
+    return this._cardTemplate.cloneNode(true);
+  }
+
   createCardElement() {
     this._element = this._getCardElement();
     this._setTextAndImage();
