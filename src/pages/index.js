@@ -2,7 +2,6 @@ import "./index.css";
 import FormValidator from "../components/FormValidator.js";
 import Card from "../components/Card.js";
 import {
-  initialCards,
   constants,
   nameInput,
   titleInput,
@@ -44,6 +43,8 @@ const user = new UserInfo({
   userJobInput: titleInput,
   userAvatarInput: avatarInput,
 });
+
+let UserId = null;
 
 // Declaramos la API
 
@@ -93,7 +94,9 @@ api
 
 // ------- Render Card ---------
 
-function renderCard(cardSection, data) {
+// ** Nuevo código a Revisar para Like las Cards
+
+function renderCard(cardSection, data, imagePopup) {
   const cardObject = new Card(data, "#card-template", () => {
     imagePopup.openPopupWindow(data);
   });
@@ -101,6 +104,8 @@ function renderCard(cardSection, data) {
   const newItem = cardObject.createCardElement();
   cardSection.addItem(newItem);
 }
+
+// ** Fin nuevo código a revisar para likes las cards **
 
 //---- Inicio Crear nuevas tarjetas
 

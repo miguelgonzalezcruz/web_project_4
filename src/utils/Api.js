@@ -81,6 +81,8 @@ class Api {
         console.log(err);
       });
   }
+
+  // Para añadir un like *** Revisar
 }
 
 export default Api;
