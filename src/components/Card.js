@@ -57,13 +57,13 @@ class Card {
     );
   }
 
-  _handleLike() {
-    this._likeButton.classList.toggle("active__heart");
-  }
-
   _handleDelete() {
     this._element.remove();
     this._element = null;
+  }
+
+  _handleLike() {
+    this._likeButton.classList.toggle("active__heart");
   }
 }
 export default Card;
