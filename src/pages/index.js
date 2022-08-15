@@ -44,8 +44,6 @@ const user = new UserInfo({
   userAvatarInput: avatarInput,
 });
 
-let UserId = null;
-
 // Declaramos la API
 
 const api = new Api({
@@ -71,7 +69,7 @@ api.getUserInfo().then((data) => {
 
 const placesGrid = new Section(
   {
-    items: null, // constants.initialcards
+    items: [],
     renderer: (data) => {
       //En section
       renderCard(placesGrid, data, imagePopup);
