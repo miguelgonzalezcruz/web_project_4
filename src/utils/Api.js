@@ -81,9 +81,6 @@ class Api {
         console.log(err);
       });
   }
-
-  // Para añadir un like *** Revisar
-
   addNewLikes(cardId) {
     return fetch(this._url + "/cards/likes/" + cardId, {
       method: "PUT",

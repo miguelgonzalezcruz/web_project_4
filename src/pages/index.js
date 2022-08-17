@@ -41,65 +41,48 @@ const inputAvatar = formAvatarEdit.querySelector(".popup__input_avatar_link");
 const imagePopup = new PopupWithImage("#preview-popup");
 imagePopup.setEventListeners();
 
-// ---- Confirm Delete Popup ----
-
 const confirmDeletePopup = new PopupWithConfirmation("#delete-popup");
 confirmDeletePopup.setEventListeners();
 
-// La información del perfil de usuario
 const user = new UserInfo({
   userNameInput: nameInput,
   userJobInput: titleInput,
   userAvatarInput: avatarInput,
 });
 
-// Declaramos la API
-
 const api = new Api({
-  //La url de la API con la info del grupo
   url: " https://around.nomoreparties.co/v1/group-12",
-  //El header con el token de acceso
   headers: {
     authorization: "f0f5b035-9e61-4cc2-926f-83804fb546a7",
     "Content-Type": "application/json",
   },
 });
 
-// Llamamos a la API para recoger la info del perfil de usuario
-
-api.getUserInfo().then((data) => {
-  userId = data._id;
-  console.log(data);
-  user.addUserInfo({
-    // en UserInfo.js
-    userNewNameInput: data.name,
-    userNewJobInput: data.about,
-    userNewAvatarInput: data.avatar,
-  });
-});
-
-const placesGrid = new Section(
-  {
-    items: [],
-    renderer: (data) => {
-      //En section
-      renderCard(placesGrid, data, imagePopup, confirmDeletePopup);
-    },
-  },
-  ".elements"
-);
-
-// Llamamos a la API para recoger la info de las cards
-
-api
-  .getInitialCards()
-  .then((cards) => {
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([data, cards]) => {
+    userId = data._id;
+    console.log(data);
+    user.addUserInfo({
+      userNewNameInput: data.name,
+      userNewJobInput: data.about,
+      userNewAvatarInput: data.avatar,
+    });
     placesGrid.setupItems(cards);
     placesGrid.renderItems();
   })
   .catch((err) => {
     console.log(err);
   });
+
+const placesGrid = new Section(
+  {
+    items: [],
+    renderer: (data) => {
+      renderCard(placesGrid, data, imagePopup, confirmDeletePopup);
+    },
+  },
+  ".elements"
+);
 
 // ------- Render Card ---------
 
@@ -113,29 +96,26 @@ function renderCard(cardSection, data, imagePopup, confirmDeletePopup) {
     },
     () => {
       if (cardObject.isLiked()) {
-        // call removeLike
         api.removeNewLikes(data._id).then((response) => {
           console.log(response);
           cardObject.setLikes(response.likes);
         });
       } else {
-        // añadir un like
         api.addNewLikes(data._id).then((response) => {
           console.log(response);
           cardObject.setLikes(response.likes);
         });
       }
     },
-    // () => {
-    //   api.deleteCard(data._id).then(() => {
-    //     cardObject.handleDelete();
-    //   });
-    // }
     () => {
       confirmDeletePopup.confirmDelete(() => {
-        api.deleteCard(data._id).then(() => {
-          cardObject.handleDelete();
-        });
+        confirmDeletePopup.loadingText(true);
+        api
+          .deleteCard(data._id)
+          .then(() => {
+            cardObject.handleDelete();
+          })
+          .finally(() => confirmDeletePopup.loadingText(false));
         confirmDeletePopup.closePopupWindow();
       });
       confirmDeletePopup.openPopupWindow();
@@ -164,8 +144,6 @@ const addNewCard = new PopupWithForm({
 
 addNewCard.setEventListeners();
 
-//---- Start New Code Task 3 Editing Profile ----
-
 const editProfile = new PopupWithForm({
   popupSelector: ".edit-popup",
   handleFormSubmit: (data) => {
@@ -186,8 +164,6 @@ const editProfile = new PopupWithForm({
 
 editProfile.setEventListeners();
 
-// ----- Start Updating profile picture ------
-
 const editProfilePicture = new PopupWithForm({
   popupSelector: ".avatar-popup",
   handleFormSubmit: (data) => {
@@ -205,8 +181,6 @@ const editProfilePicture = new PopupWithForm({
 });
 
 editProfilePicture.setEventListeners();
-
-// ---- Finish Updating profile picture -----
 
 const editFormValidator = new FormValidator(constants, editPopupElement);
 const addFormValidator = new FormValidator(constants, createPopupElement);

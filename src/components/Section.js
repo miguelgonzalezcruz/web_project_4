@@ -7,7 +7,6 @@ class Section {
   }
 
   addItem(element) {
-    // Añade items
     this._element.append(element);
   }
 
@@ -16,7 +15,6 @@ class Section {
   }
 
   renderItems() {
-    // Pinta items
     this.clear();
     this._itemsArray.forEach((item) => {
       this._renderer(item);
@@ -24,7 +22,6 @@ class Section {
   }
 
   setupItems(items) {
-    // Establece items
     this._itemsArray = items;
   }
 }
