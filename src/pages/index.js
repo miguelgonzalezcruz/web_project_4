@@ -10,8 +10,11 @@ import {
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import Api from "../utils/Api";
+
+let userId = null;
 
 // --------------- Edit Profile Const --------------------------------------------
 const profileEditButton = document.querySelector(".profile__info-edit");
@@ -20,6 +23,7 @@ const formEditProfile = document.querySelector(".popup__content-form");
 const formAvatarEdit = document.querySelector(".popup__avatar-form");
 const avatarEditButton = document.querySelector(".profile__avatar-edit");
 const avatarPopupElement = document.querySelector(".avatar-popup");
+const deletePopupElement = document.querySelector(".delete-popup");
 
 // --------------- New Card Const ----------------------------------------------
 const profileAddButton = document.querySelector(".profile__add");
@@ -36,6 +40,11 @@ const inputAvatar = formAvatarEdit.querySelector(".popup__input_avatar_link");
 
 const imagePopup = new PopupWithImage("#preview-popup");
 imagePopup.setEventListeners();
+
+// ---- Confirm Delete Popup ----
+
+const confirmDeletePopup = new PopupWithConfirmation("#delete-popup");
+confirmDeletePopup.setEventListeners();
 
 // La información del perfil de usuario
 const user = new UserInfo({
@@ -59,6 +68,8 @@ const api = new Api({
 // Llamamos a la API para recoger la info del perfil de usuario
 
 api.getUserInfo().then((data) => {
+  userId = data._id;
+  console.log(data);
   user.addUserInfo({
     // en UserInfo.js
     userNewNameInput: data.name,
@@ -72,7 +83,7 @@ const placesGrid = new Section(
     items: [],
     renderer: (data) => {
       //En section
-      renderCard(placesGrid, data, imagePopup);
+      renderCard(placesGrid, data, imagePopup, confirmDeletePopup);
     },
   },
   ".elements"
@@ -92,18 +103,48 @@ api
 
 // ------- Render Card ---------
 
-// ** Nuevo código a Revisar para Like las Cards
-
-function renderCard(cardSection, data, imagePopup) {
-  const cardObject = new Card(data, "#card-template", () => {
-    imagePopup.openPopupWindow(data);
-  });
+function renderCard(cardSection, data, imagePopup, confirmDeletePopup) {
+  data._userId = userId;
+  const cardObject = new Card(
+    data,
+    "#card-template",
+    () => {
+      imagePopup.openPopupWindow(data);
+    },
+    () => {
+      if (cardObject.isLiked()) {
+        // call removeLike
+        api.removeNewLikes(data._id).then((response) => {
+          console.log(response);
+          cardObject.setLikes(response.likes);
+        });
+      } else {
+        // añadir un like
+        api.addNewLikes(data._id).then((response) => {
+          console.log(response);
+          cardObject.setLikes(response.likes);
+        });
+      }
+    },
+    // () => {
+    //   api.deleteCard(data._id).then(() => {
+    //     cardObject.handleDelete();
+    //   });
+    // }
+    () => {
+      confirmDeletePopup.confirmDelete(() => {
+        api.deleteCard(data._id).then(() => {
+          cardObject.handleDelete();
+        });
+        confirmDeletePopup.closePopupWindow();
+      });
+      confirmDeletePopup.openPopupWindow();
+    }
+  );
 
   const newItem = cardObject.createCardElement();
   cardSection.addItem(newItem);
 }
-
-// ** Fin nuevo código a revisar para likes las cards **
 
 //---- Inicio Crear nuevas tarjetas
 
@@ -122,8 +163,6 @@ const addNewCard = new PopupWithForm({
 });
 
 addNewCard.setEventListeners();
-
-// **** FINISH ALL CARD RELATED *****
 
 //---- Start New Code Task 3 Editing Profile ----
 
@@ -172,10 +211,12 @@ editProfilePicture.setEventListeners();
 const editFormValidator = new FormValidator(constants, editPopupElement);
 const addFormValidator = new FormValidator(constants, createPopupElement);
 const avatarFormValidator = new FormValidator(constants, avatarPopupElement);
+const deleteFormValidator = new FormValidator(constants, deletePopupElement);
 
 editFormValidator.enableValidation();
 addFormValidator.enableValidation();
 avatarFormValidator.enableValidation();
+deleteFormValidator.enableValidation();
 
 profileAddButton.addEventListener("click", () => {
   addNewCard.openPopupWindow();

@@ -8,7 +8,7 @@ class Section {
 
   addItem(element) {
     // Añade items
-    this._element.prepend(element);
+    this._element.append(element);
   }
 
   clear() {

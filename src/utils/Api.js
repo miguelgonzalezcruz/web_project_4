@@ -83,6 +83,45 @@ class Api {
   }
 
   // Para añadir un like *** Revisar
+
+  addNewLikes(cardId) {
+    return fetch(this._url + "/cards/likes/" + cardId, {
+      method: "PUT",
+      headers: this._headers,
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  removeNewLikes(cardId) {
+    return fetch(this._url + "/cards/likes/" + cardId, {
+      method: "DELETE",
+      headers: this._headers,
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  deleteCard(cardId) {
+    return fetch(this._url + "/cards/" + cardId, {
+      method: "DELETE",
+      headers: this._headers,
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 
 export default Api;
